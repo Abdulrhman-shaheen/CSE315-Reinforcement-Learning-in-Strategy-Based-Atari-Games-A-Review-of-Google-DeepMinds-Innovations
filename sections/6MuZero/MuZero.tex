@@ -1,11 +1,5 @@
-\documentclass{article}
-\usepackage{amsmath, amssymb}
-\usepackage{graphicx}
-
-\begin{document}
-
 % Introduction
-\section*{Introduction}
+\subsection*{Introduction}
 Through the development of AlphaZero, a general model for board games with superhuman ability has 
 been achieved in three games: Go, chess, and Shogi. It could achieve these results without the need for 
 human gameplay data or history, instead using self-play in an enclosed environment. However, the 
@@ -18,10 +12,10 @@ MuZero was deployed to all the games with no prior knowledge of them or specific
 managed to show state-of-the-art results in almost all of them.
 
 % MuZero Algorithm
-\section*{MuZero Algorithm}
+\subsection*{MuZero Algorithm}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.7\textwidth]{graph_1.png}
+    \includegraphics[width=0.7\textwidth]{sections/6MuZero/graph_1.png}
     \caption{This is a sample image.}
     \label{fig:(A)The progression of the model through its MDP. (B)MuZero acting as an environment with MCTS as feedback. (C)A diagram of training MuZero's model}
 \end{figure}
@@ -41,7 +35,7 @@ planning and acting, which generally converges to reality through training. The 
 the final step is compared against the game result in board games, i.e., win, loss, or a draw.
 
 % Insert Equations Here
-\section*{Equations}
+\subsection*{Equations}
 \begin{align}
     s_0 &= h_\theta(o_1, \ldots, o_t) \\
     r_k, s_k &= g_\theta(s_{k-1}, a_k) \\
@@ -84,7 +78,7 @@ the final step is compared against the game result in board games, i.e., win, lo
 \end{align}
 
 % MCTS
-\section*{MCTS}
+\subsection*{MCTS}
 MuZero uses the same approach developed in AlphaZero to find the optimum action given an internal 
 state. MCTS is used where states are the nodes, and the edges store visit count, mean value, policy, and 
 reward. The search is done in a three-phase setup: selection, expansion, and backup. The simulation 
@@ -98,10 +92,10 @@ unbounded values, so MuZero rescales the value to the maximum value observed by 
 this training step, ensuring no environment-specific data is needed.
 
 % Results
-\section*{Results}
+\subsection*{Results}
 The MuZero model demonstrated significant improvements across various test cases, achieving state-of-the-art performance in several scenarios. Key findings include:
 
-\subsection*{Board Games}
+\subsubsection*{Board Games}
 \begin{itemize}
     \item When tested on the three board games AlphaZero was trained for (Go, chess, and shogi):
     \begin{itemize}
@@ -110,7 +104,7 @@ The MuZero model demonstrated significant improvements across various test cases
     \end{itemize}
 \end{itemize}
 
-\subsection*{Atari Games}
+\subsubsection*{Atari Games}
 \begin{itemize}
     \item MuZero was tested on 60 Atari games, competing against both human players and state-of-the-art models (model-based and model-free). Results showed:
     \begin{itemize}
@@ -120,7 +114,7 @@ The MuZero model demonstrated significant improvements across various test cases
     \item The computational efficiency and generalization of MuZero highlight its effectiveness in complex, unstructured environments.
 \end{itemize}
 
-\subsection*{Limitations}
+\subsubsection*{Limitations}
 \begin{itemize}
     \item Despite its strengths, MuZero struggled in certain games, such as:
     \begin{itemize}
@@ -133,8 +127,3 @@ The MuZero model demonstrated significant improvements across various test cases
     \end{itemize}
 \end{itemize}
 
-
-
-
-
-\end{document}
