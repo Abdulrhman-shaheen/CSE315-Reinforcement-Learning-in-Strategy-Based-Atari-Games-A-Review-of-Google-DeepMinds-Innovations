@@ -16,8 +16,8 @@ managed to show state-of-the-art results in almost all of them.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.35\textwidth]{sections/6MuZero/graph_1.png}
-    \caption{This is a sample image.}
-    \label{fig:(A)The progression of the model through its MDP. (B)MuZero acting as an environment with MCTS as feedback. (C)A diagram of training MuZero's model}
+    \caption{(A)The progression of the model through its MDP. (B)MuZero acting as an environment with MCTS as feedback. (C)A diagram of training MuZero's model.}
+    \label{fig_1}
 \end{figure}
 The model takes in an input of observations $o_1, \ldots, o_t$ that are then fed to a representation network $h$, 
 which reduces the dimensions of the input and produces a root hidden state $s_0$. Internally, the model 
@@ -34,7 +34,7 @@ need for a simulator, as the model internalizes the environment characteristics 
 planning and acting, which generally converges to reality through training. The value function at 
 the final step is compared against the game result in board games, i.e., win, loss, or a draw.
 
-\subsection*{Equations}
+\subsection*{Loss function and learning equations}
 
 \begin{align}
     s_0 &= h_\theta(o_1, \ldots, o_t) \\
@@ -42,14 +42,14 @@ the final step is compared against the game result in board games, i.e., win, lo
     p_k, v_k &= f_\theta(s_k)
 \end{align}
 
-% This block needs to be resized to fit within the column
 \begin{equation}
-\resizebox{\columnwidth}{!}{$
-    \begin{bmatrix}
-        p_k \\ v_k \\ r_k
-    \end{bmatrix} 
-    = \mu_\theta(o_1, \ldots, o_t, a_1, \ldots, a_k)
-$}
+\setlength{\arraycolsep}{1.5pt} % Reduce spacing inside the matrix
+\begin{bmatrix}
+    p_k \\ v_k \\ r_k
+\end{bmatrix}
+=
+\mu_\theta(o_1, \ldots, o_t, a_1, \ldots, a_k)
+\label{eq:matrix}
 \end{equation}
 
 \begin{align}
@@ -57,37 +57,36 @@ $}
     a_t &\sim \pi_t
 \end{align}
 
-% Multi-line equation broken to fit the column width
 \begin{align}
     p_k^t, v_k^t, r_k^t &= \mu_\theta(o_1, \ldots, o_t, a_{t+1}, \ldots, a_{t+k}) \\
     z_t &= 
     \begin{cases} 
-        u_T & \text{for games} \\
-        u_{t+1} + \gamma u_{t+2} + \ldots + \gamma^{n-1} u_{t+n} + \gamma^n \nu_{t+n} & \text{for general MDPs}
+        u_T, & \text{for games} \\
+        u_{t+1} + \gamma u_{t+2} + \ldots \nonumber \\
+        \quad + \gamma^{n-1} u_{t+n} + \gamma^n \nu_{t+n}, & \text{for general MDPs}
     \end{cases}
 \end{align}
 
-% Long summation equation broken into multiple lines
 \begin{align}
     l_t(\theta) &=
     \sum_{k=0}^K \big[ l_r(u_{t+k}, r_k^t) + l_v(z_{t+k}, v_k^t) \nonumber \\
     & \quad + l_p(\pi_{t+k}, p_k^t) \big] + c \|\theta\|^2
 \end{align}
 
-% Loss functions formatted with cases
 \begin{align}
     l_r(u, r) &= 
     \begin{cases} 
-        0 & \text{for games} \\
-        \phi(u)^T \log r & \text{for general MDPs}
+        0, & \text{for games} \\
+        \phi(u)^T \log r, & \text{for general MDPs}
     \end{cases} \\
     l_v(z, q) &= 
     \begin{cases} 
-        (z - q)^2 & \text{for games} \\
-        \phi(z)^T \log q & \text{for general MDPs}
+        (z - q)^2, & \text{for games} \\
+        \phi(z)^T \log q, & \text{for general MDPs}
     \end{cases} \\
     l_p(\pi, p) &= \pi^T \log p
 \end{align}
+
 
 
 % MCTS
