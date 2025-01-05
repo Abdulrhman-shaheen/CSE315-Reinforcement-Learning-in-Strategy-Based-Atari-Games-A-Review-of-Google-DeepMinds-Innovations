@@ -7,17 +7,17 @@ By starting with only the rules of the game and leveraging reinforcement learnin
 AlphaGo Zero introduced several groundbreaking advancements over its predecessor, AlphaGo, streamlining and enhancing its architecture and training process:
 
 \begin{enumerate}
-    \item \textbf{Unified Neural Network \( f_\theta \):}  
+    \item Unified Neural Network \( f_\theta \):
     AlphaGo Zero replaced AlphaGo's dual-network setup—separate networks for policy and value—with a single neural network \( f_\theta \). This network outputs both the policy vector \( p \) and the value scalar \( v \) for a given game state, reprsented as \[ f_\theta(s) = (p, v) \] This unified architecture simplifies the model and improves training efficiency.
 
-    \item \textbf{Self-Play Training:}  
+    \item Self-Play Training:
     Unlike AlphaGo, which relied on human games as training data, AlphaGo Zero was trained entirely through self-play. Starting from random moves, it learned by iteratively playing against itself, generating data and refining \( f_\theta \) without any prior knowledge of human strategies. This removed biases inherent in human gameplay and allowed AlphaGo Zero to discover novel and highly effective strategies.
 
-    \item \textbf{Removal of Rollouts:}  
+    \item Removal of Rollouts:
     AlphaGo Zero eliminated the need for rollouts, which were computationally expensive simulations to the end of the game used by AlphaGo's MCTS. Instead, \( f_\theta \) directly predicts the value \( v \) of a state, providing a more efficient and accurate estimation.
 
 
-    \item \textbf{Superior Performance:}  
+    \item Superior Performance:
     By integrating these advancements, AlphaGo Zero defeated AlphaGo 100–0 in direct matches, demonstrating the superiority of its self-play training, unified architecture, and reliance on raw rules over pre-trained human data.
 \end{enumerate}
 
@@ -41,12 +41,28 @@ The neural network is updated after each self-play game by using the data collec
     \item Data Colletion: for each time step $t$, the training data $(s_t, \pi_t, z_t)$ is stored, where $s_t$ is the game state, $\pi_t$ is the search probabilities, and $z_t$ is the game outcome.
     \item Network training process: after collecing data from self-play, The neural network $f_\theta$ is adjusted to minimize the error between the predicted value v and the self-play winnder z, and to maximize the similarity between the search probabilities $P$ and the MCTS probabilities.
     This is done by using a loss function that combines the mean-squared error and the cross entropy losses repsectibly. The loss function is defined as \[ L = (z - v)^2 - \pi^T \log p + c||\theta||^2\] where $c$ is the L2 regularization term.
-    This process 
 
 \end{enumerate}
 
 \subsection{Challenges and Solutions}
+Alpha Go Zero overcame several challanges:
+\begin{enumerate}
+    \item Human knowledge Dependency: AlphaGo Zero eliminated the need for human gameplay data, relying solely on self-play to learn the game of Go. This allowed it to discover novel strategies that surpassed human expertise.
+    \item Compelxity of the dual network approach in alpha go: AlphaGo utilized separate neural networks for policy prediction $p$ and value estimation $V$, increasing the computational complexity. AlphaGo Zero unified these into a \textbf{single network} that outputs both $p$ and $V$, simplifying the architecture and improving training efficiency.
+    \item The need of handcrafted features: AlphaGo relied on handcrafted features, such as board symmetry and pre-defined game heuristics, for feature extraction. AlphaGo Zero eliminated the need for feature engineering by using \textbf{raw board states} as input, learning representations directly from the data.
+\end{enumerate}
 
 \subsection{Performance Benchmarks}
+
+AlphaGo Zero introduced a significant improvement in neural network architecture by employing a unified residual network (ResNet) design for its $f_\theta$ model. This replaced the separate CNN-based architectures previously used in AlphaGo, which consisted of distinct networks for policy prediction and value estimation. 
+\\\\
+The superiority of this approach is evident in the Elo rating comparison shown in figure \ref{fig:results_agz}. The "dual-res" architecture, utilized in AlphaGo Zero, achieved the highest Elo rating, significantly outperforming other architectures like "dual-conv" and "sep-conv" used in earlier versions of AlphaGo.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.20\textwidth]{sections/5AlphaGo Zero/Results_agz.png}
+    \caption{Elo rating comparison of different neural network architectures.}
+    \label{fig:results_agz}
+\end{figure}
 
 
