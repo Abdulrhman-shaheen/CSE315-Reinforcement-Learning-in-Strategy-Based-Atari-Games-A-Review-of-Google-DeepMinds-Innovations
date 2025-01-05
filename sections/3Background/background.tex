@@ -1,4 +1,9 @@
+
 %BACKGROUND SECTION%
+\renewcommand\theparagraph{\arabic{subsubsection}.\arabic{paragraph}}
+\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{2em}{0.5ex plus 0.2ex minus .2ex}{0em}
+
 Reinforcement Learning (RL) is a key area of machine learning that focuses on
 learning through interaction with the environment. In RL, an agent takes
 actions (A) in specific states (S) with the goal of maximizing the rewards (R)
@@ -34,18 +39,18 @@ history of past states and actions.
 
 Formally, the Markov property is represented by:
 
-\[
+\begin{equation}
     P(s'\mid s, a) = \mathbb{P}[s_{t+1} = s' \mid s_t = s, a_t = a]
-\]
+\end{equation}
 
 which denotes the probability of transitioning from state $s$ to state $s'$
 when action $a$ is taken.
 
 The reward function \( R \) is similarly defined as:
 
-\[
+\begin{equation}
     R(s, a) = \mathbb{E}[r_t \mid s_{t-1} = s, a_{t-1} = a]
-\]
+\end{equation}
 
 which represents the expected reward received after taking action $a$ in state
 $S$.
@@ -57,24 +62,52 @@ done through the \textbf{value function} $V(s)$. Value function estimates the
 expected cumulative reward an agent will receive starting from state \( s \)
 and continuing thereafter. In essence, the value function reflects how
 beneficial it is to be in a particular state, guiding the agent's
-decision-making process. The value function is defined as:
-\[
-    V(s) = \mathbb{E}[G_t \mid s_t = s]
-\]
+decision-making process. The \textbf{state-value function} is then defined as:
+
+\begin{equation}\label{eq:v_pi}
+    \begin{split}
+        V_\pi(s) & = \mathbb{E_\pi}[G_t \mid s_t = s]                            \\
+                 & = \mathbb{E_\pi}[r_t + \gamma r_{t+1}  + \ldots \mid s_t = s]
+    \end{split}
+\end{equation}
+
 where \( G_t \) is the cumulative reward from time step $t$ onwards. From here
-we can define the \textbf{action-value function} under policy $\pi$ $Q_\pi(s,
-    a)$, which again, estimates the expected cumulative reward from the state $s$
-and taking action $a$ and then following policy $\pi$:
-\[
-    Q_\pi(s, a) = \mathbb{E_\pi}[G_t \mid s_t = s, a_t = a]
-\]
-\[
-    = \mathbb{E_\pi}[r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \ldots \mid s_t = s, a_t = a]
-\]
+we can define another value function the \textbf{action-value function} under
+policy $\pi$, which is $Q_\pi(s, a)$, that estimates the expected cumulative
+reward from the state $s$ and taking action $a$ and then following policy
+$\pi$:
+
+\begin{equation}\label{eq:q_pi}
+    \begin{split}
+        Q_\pi(s, a) & = \mathbb{E_\pi}[G_t \mid s_t = s, a_t = a]                            \\
+                    & = \mathbb{E_\pi}[r_t + \gamma r_{t+1}  + \ldots \mid s_t = s, a_t = a]
+    \end{split}
+\end{equation}
 
 where $\gamma$ is the discount factor, which is a decimal value between 0 and 1
 that detemines how much we care about immediate rewards versus future reward
 rewards \cite{bg2}.\\
+
+We say that a policy $\pi$ is better than another policy $\pi'$ if the expected
+return of every state under $\pi$ is greater than or equal to the expected
+return of every state under $\pi'$, i.e., $V_\pi(s) \geq V_{\pi'}(s)$ for all
+$s \in S$. Eventually, there will be a policy (or policies) that are better
+than or equal to all other policies, this is called the \textbf{optimal policy}
+$\pi^*$. All optimal policies will then share the same optimal state-value
+function $V^*(s)$ and the same optimal action-value function $Q^*(s, a)$, which
+are defined as:
+
+\begin{equation}
+    \begin{split}
+        V^*(s)    & = \max_\pi V_\pi(s)    \\
+        Q^*(s, a) & = \max_\pi Q_\pi(s, a)
+    \end{split}
+\end{equation}
+
+If we can estimate the optimal state-value (or action-value) function, then the
+optimal policy $\pi^*$ can be obtained by selecting the action that maximizes
+the state-value (or action-value) function at each state, i.e., $\pi^*(s) =
+    \arg\max_a Q^*(s, a)$ and that's the goal of reinforcement learning\cite{bg2}.
 
 \subsection{Reinforcement Learning Algorithms}
 There are multiple reinforcement learning algorithms that have been developed
@@ -82,37 +115,187 @@ that falls under a lot of categories. But, for the sake of this review, we will
 focus on the following algorithms that have been used by the Google DeepMind
 team in their reinforcement learning models.\\
 
-\subsubsection{\textbf{Monte Carlo Algorithm}}
-The Monte Carlo Algorithm is a model-free reinforcement learning algorithm used 
-to estimate the value of states or state-action pairs under a given policy by averaging
- the returns of multiple episodes. This method alternates between two main steps: policy
-  evaluation and policy improvement.
+\subsubsection{\textbf{Model-Based Algorithms: Dynamic Programming}}
+
+\hspace{1em} Dynamic programming (DP) algorithms can be applied when we have a perfect model
+of the environment, represented by the transition probability function \( P(s',
+r \mid s, a) \). These algorithms rely on solving the Bellman equations
+(recursive form of equations \ref{eq:v_pi} and \ref{eq:q_pi}) iteratively to
+compute optimal policies. The process alternates between two key steps:
+\textbf{policy evaluation} and \textbf{policy improvement}.
+
+\paragraph{Policy Evaluation}
+Policy evaluation involves computing the value function \( V^\pi(s) \) under a
+given policy \( \pi \). This is achieved iteratively by updating the value of
+each state based on the Bellman equation:
+\[
+    V^\pi(s) = \sum_{a \in A} \pi(a \mid s) \sum_{s', r} P(s', r \mid s, a) \left[ r + \gamma V^\pi(s') \right].
+\]
+Starting with an arbitrary initial value \( V^\pi(s) \), the updates are
+repeated for all states until the value function converges to a stable
+estimate.
+
+\paragraph{Policy Improvement}
+Once the value function \( V^\pi(s) \) has been computed, the policy is
+improved by choosing the action \( a \) that maximizes the expected return for
+each state:
+\[
+    \pi'(s) = \arg\max_a \sum_{s', r} P(s', r \mid s, a) \left[ r + \gamma V^\pi(s') \right].
+\]
+This step ensures that the updated policy \( \pi' \) is better than or equal to
+the previous policy \( \pi \). The process alternates between policy evaluation
+and improvement until the policy converges to the optimal policy \( \pi^* \),
+where no further improvement is possible. It can be visualized as:
+
+\[
+    \pi_0 \xrightarrow{\text{Eval}} V^{\pi_0} \xrightarrow{\text{Improve}} \pi_1 \xrightarrow{\text{Eval}} V^{\pi_1} \xrightarrow{\text{Improve}} \pi_2 \xrightarrow{\text{Eval}} \ldots \xrightarrow{\text{Improve}} \pi^*.
+\]
+
+\paragraph{Value Iteration}
+Value iteration simplifies the DP process by combining policy evaluation and
+policy improvement into a single step. Instead of evaluating a policy
+completely, it directly updates the value function using:
+\[
+    V^*(s) = \max_a \sum_{s', r} P(s', r \mid s, a) \left[ r + \gamma V^*(s') \right].
+\]
+This method iteratively updates the value of each state until convergence and
+implicitly determines the optimal policy. Then the optimal policy can be
+obtained by selecting the action that maximizes the value function at each
+state, as
+\begin{equation}
+    \pi^*(s) = \arg\max_a \sum_{s', r} P(s', r \mid s, a) \left[ r + \gamma V^*(s') \right].
+\end{equation}
+
+Dynamic Programming's systematic approach to policy evaluation and improvement
+forms the foundation for the techniques that have been cruical in training
+systems like AlphaGo Zero and MuZero.
+
+\subsubsection{\textbf{Model-Free Algorithms}}
+
+\paragraph{Monte Carlo Algorithm (MC)}
+The Monte Carlo (MC) algorithm is a model-free reinforcement learning method
+that estimates the value of states or state-action pairs under a given policy
+by averaging the returns of multiple episodes. Unlike DP, MC does not require a
+perfect model of the environment and instead learns from sampled experiences.
+
+The key steps in MC include:
 
 \begin{itemize}
-    \item \textbf{Policy Evaluation:} The algorithm evaluates the value of a state or state-action pair by averaging the returns from multiple episodes that include that state or state-action pair.
-    \item \textbf{Policy Improvement:} The algorithm improves the policy by selecting the action that maximizes the value of the state-action pair.
+    \item \textbf{Policy Evaluation:} Estimate the value of a state or state-action pair \( Q(s, a) \) by averaging the returns observed in multiple episodes.
+    \item \textbf{Policy Improvement:} Update the policy \( \pi \) to choose actions that maximize the estimated value \( Q(s, a) \).
 \end{itemize}
 
-Since the algorithm is model-free and does not assume any prior knowledge of
-the environment's dynamics, it focuses on estimating state-action pair values
-(\( Q(s, a) \)) rather than just state values. The Monte Carlo Algorithm
-typically follows these steps:
-
-\begin{enumerate}
-    \item Initialize the state-action pair values \( Q(s, a) \) arbitrarily.
-    \item Start at a random state and take a random action, ensuring the possibility of
-          visiting all state-action pairs over time.
-    \item Follow the current policy \( \pi \) until a terminal state is reached.
-    \item Update the value of each state-action pair \( Q(s, a) \) encountered in the
-          episode using the observed returns.
-    \item For each state visited in the episode, update the policy \( \pi(s) \) to select
-          the action that maximizes \( Q(s, a) \):
-          \[
-              \pi(s) = \arg\max_a Q(s, a).
-          \]
-\end{enumerate}
+MC algorithms operate on complete episodes, requiring the agent to explore all
+state-action pairs sufficiently to ensure accurate value estimates. The updated
+policy is given by:
+\[
+    \pi(s) = \arg\max_a Q(s, a).
+\]
+While both MC and DP alternate between policy evaluation and policy
+improvement, MC works with sampled data, making it suitable for environments
+where the dynamics are unknown or difficult to model.
 
 This algorithm is particularly well-suited for environments that are
 \emph{episodic}, where each episode ends in a terminal state after a finite
-number of steps.
+number of steps. \\ Monte Carlo's reliance on episodic sampling and policy
+refinement has directly influenced the development of search-based methods like
+Monte Carlo Tree Search (MCTS), which was crucial in AlphaGo for evaluating
+potential moves during gameplay. The algorithm's adaptability to model-free
+settings has made it a cornerstone of modern reinforcement learning strategies.
 
+\paragraph{Temporal Diffrence (TD)}
+
+Temporal Diffrence is another model free algorithm that's very similar To Monte
+Carlo, but instead of waiting for termination of the episode to give the
+return, it estimates the return based on the next state. The key idea behind TD
+is to update the value function based on the difference between the current
+estimate and the estimate of the next state. The TD return is then given by:
+\begin{equation}
+    G_t = r_t + \gamma V(s_{t+1})
+\end{equation}
+that's the target (return value estimation) of state $s$ at time $t$ is the immediate reward $r$ plus the
+discounted value of the next state $s_{t+1}$.\\
+This here is called the TD(0) algorithm, which is the simplest form of TD
+that take only one future step into account. The update rule for TD(0) is:
+\begin{equation}
+    V(s_t) = V(s_t) + \alpha [r_{t+1} + \gamma V(s_{t+1}) - V(s_t)]
+\end{equation}
+
+There are other temporal difference algorithms that works exactly like TD(0),
+but with more future steps, like TD($\lambda$). \\
+
+Another important variant of TD is the Q-learning algorithm, which is an
+off-policy TD algorithm that estimates the optimal action-value function $Q^*$
+by updating the current action value based on the optimal action value of the
+next state. The update rule for Q-learning is:
+
+\begin{equation}
+    Q(s_t, a_t) = Q(s_t, a_t) + \alpha[r_{t+1} + \gamma \max_a Q(s_{t+1}, a) - Q(s_t, a_t)] .
+\end{equation}
+
+and after the algorithm converges, the optimal policy can be obtained by
+selecting the action that maximizes the action-value function at each state, as
+$\pi^*(s) = \arg\max_a Q^*(s, a)$.
+
+Temporal Difference methods, including Q-learning, play a crucial role in
+modern reinforcement learning by enabling model-free value function estimation
+and action selection without the need to terminate the episode. In systems like
+AlphaGo and MuZero, TD methods are used to update value functions efficiently
+and support complex decision-making processes without requiring a model of the
+environment.
+
+\subsubsection{\textbf{Deep RL: Deep Q-Network (DQN)}}
+
+Deep Q-Networks (DQN) represent a significant leap forward in the integration
+of deep learning with reinforcement learning. DQN extends the traditional
+Q-learning algorithm by using a deep neural network to approximate the Q-value
+function, which is essential in environments with large state spaces where
+traditional tabular methods like Q-learning become infeasible.
+
+In standard Q-learning, the action-value function \(Q(s, a)\) is learned
+iteratively based on the Bellman equation, which updates the Q-values according
+to the reward received and the value of the next state. However, when dealing
+with complex, high-dimensional inputs such as images or unstructured data, a
+direct tabular representation of the Q-values is not practical. This is where
+DQN comes in: it uses a neural network, typically a convolutional neural
+network (CNN), to approximate \(Q(s, a; \theta)\), where \(\theta\) represents
+the parameters of the network.
+
+The core ideas behind DQN are similar to those of traditional Q-learning, but
+with a few key innovations that address issues such as instability and high
+variance during training. The DQN algorithm introduces the following
+components:
+
+\begin{itemize}
+    \item \textbf{Experience Replay:} To improve the stability of training and to break the correlation between consecutive experiences, DQN stores the agent’s experiences in a replay buffer. Mini-batches of experiences are randomly sampled from this buffer to update the network, which helps in better generalization.
+    \item \textbf{Target Network:} DQN uses two networks: the primary Q-network and a target Q-network. The target network is updated less frequently than the primary network and is used to calculate the target value in the Bellman update. This reduces the risk of oscillations and divergence during training.
+\end{itemize}
+
+The update rule for DQN is based on the Bellman equation for Q-learning, but
+with the neural network approximation:
+
+\begin{equation}
+    \begin{split}
+        &Q(s_t, a_t; \theta) = Q(s_t, a_t; \theta) + \\
+         & \alpha \left[ r_{t+1} + \gamma \max_{a'} Q(s_{t+1}, a'; \theta^-) - Q(s_t, a_t; \theta) \right] 
+    \end{split}
+\end{equation}
+
+where \( \theta^- \) represents the parameters of the target network. By
+training the network to minimize the difference between the predicted Q-values
+and the target Q-values, the agent learns an optimal policy over
+time.\cite{bg4}
+
+The DQN algorithm revolutionized reinforcement learning, especially in
+applications requiring decision-making in high-dimensional spaces. One of the
+most notable achievements of DQN was its success in mastering a variety of
+Atari 2600 games directly from raw pixel input, achieving human-level
+performance across multiple games. This breakthrough demonstrated the power of
+combining deep learning with reinforcement learning to solve complex,
+high-dimensional problems.
+
+In subsequent improvements, such as Double DQN, Dueling DQN, and Prioritized
+Experience Replay, enhancements were made to further stabilize training and
+improve performance. However, the foundational concepts of using deep neural
+networks to approximate Q-values and leveraging experience replay and target
+networks remain core to the DQN framework.
