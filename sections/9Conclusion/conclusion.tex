@@ -1,1 +1,14 @@
-Conclusion
+\section*{Conclusion}
+
+Games, as an environment for reinforcement learning, have proven to be very impactful as sandboxes. Their modular nature enables experimentation across different scenarios, ranging from deterministic board games to visually complex and endless Atari games. 
+
+Google’s DeepMind utilized this modularity by developing and enhancing their models incrementally. The progression started with \textbf{AlphaGo}, which relied on human gameplay and explicit knowledge of game rules. This was followed by \textbf{AlphaGo Zero}, which removed the need for human gameplay data, and \textbf{AlphaZero}, which generalized the approach to multiple board games. Finally, \textbf{MuZero} eliminated the requirement for prior knowledge of game rules entirely, achieving breakthrough results in tens of games and surpassing its predecessors.
+
+These advancements have translated into real-world applications, such as \textbf{MuZero’s optimization of YouTube's compression algorithm}, which was already highly optimized using traditional techniques. Similarly, \textbf{AlphaFold}, while inspired by reinforcement learning principles like those in AlphaZero, relies primarily on supervised learning to model complex proteins. 
+
+While these achievements are impressive, especially given their roots in models trained to play simple games, they remain limited in scope. Challenges such as high training costs, scalability, and performance in stochastic environments persist. 
+
+Firstly, these models are \textbf{expensive to train}, even in environments with limited action and state spaces, and this cost only increases in more complex scenarios. Secondly, \textbf{scalability} is another challenge, as many real-world applications involve actions that are not mutually exclusive. This makes techniques like Monte Carlo Tree Search (MCTS) exponentially more expensive. Lastly, these models, while performing well in deterministic settings, may face difficulties when applied to \textbf{stochastic environments}, affecting both training and inference. 
+
+However, ongoing research in areas such as \textbf{model-based reinforcement learning} and \textbf{hierarchical reinforcement learning} provides hope for addressing these limitations, potentially expanding the applicability of these methods to more complex real-world scenarios.
+
