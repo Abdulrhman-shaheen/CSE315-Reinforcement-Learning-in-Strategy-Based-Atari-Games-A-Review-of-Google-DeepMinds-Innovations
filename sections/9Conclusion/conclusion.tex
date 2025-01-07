@@ -1,3 +1,26 @@
-\section*{Conclusion}
-
-Games as an environment for Reinforcement learning, have proven to be very helpful as a sandbox. Their modular nature enables experimentation for different scenarios from the deterministic board games to visually complex and endless atari games. Google’s DeepMind utilized this in developing and enhancing their models starting with AlphaGo that required human gameplay as well as knowledge of the game rules. Incrementally, they started stripping down game specific data and generalizing the models. AlphaGoZero removed the need for human gameplay and AlphaZero generalized the approach to multiple board games. Subsequently, MuZero removed any knowledge requirements of games and was able to achieve break-through results in tens of games surpassing all previous models. These advancements were translated to real-life applications seen in MuZero’s optimization of the YouTube compression algorithm, which was already highly optimized using traditional techniques. The well defined nature of the problem helped in achieving this result. Also, AlphaFold used reinforcement learning in combination with supervised learning and biology insights to simulate protein structures . While these uses are impressive, especially coming from models primarily trained to play simple games, they are still limited in scope. There are many possible holdbacks mainly the training cost, scalability, and stochastic environments. These models are very expensive to train despite the limited action and state spaces. This cost would only increase at more complex environments, taking us to the second issue: scalability. In many real applications, the actions aren’t mutually exclusive. This would make the MCTS exponentially more expensive and would further increase the training cost. Finally, while these models have been tested in deterministic environments, stochastic scenarios might cause trouble for their training and inference.
+Games as an environment for Reinforcement learning, have proven to be very
+helpful as a sandbox. Their modular nature enables experimentation for
+different scenarios from the deterministic board games to visually complex and
+endless atari games. Google's DeepMind utilized this in developing and
+enhancing their models starting with AlphaGo that required human gameplay as
+well as knowledge of the game rules. Incrementally, they started stripping down
+game specific data and generalizing the models. AlphaGoZero removed the need
+for human gameplay and AlphaZero generalized the approach to multiple board
+games. Subsequently, MuZero removed any knowledge requirements of games and was
+able to achieve break-through results in tens of games surpassing all previous
+models. These advancements were translated to real-life applications seen in
+MuZero's optimization of the YouTube compression algorithm, which was already
+highly optimized using traditional techniques. The well defined nature of the
+problem helped in achieving this result. Also, AlphaFold used reinforcement
+learning in combination with supervised learning and biology insights to
+simulate protein structures. While these uses are impressive, especially
+coming from models primarily trained to play simple games, they are still
+limited in scope. There are many possible holdbacks mainly the training cost,
+scalability, and stochastic environments. These models are very expensive to
+train despite the limited action and state spaces. This cost would only
+increase at more complex environments, taking us to the second issue:
+scalability. In many real applications, the actions aren’t mutually exclusive.
+This would make the MCTS exponentially more expensive and would further
+increase the training cost. Finally, while these models have been tested in
+deterministic environments, stochastic scenarios might cause trouble for their
+training and inference.
