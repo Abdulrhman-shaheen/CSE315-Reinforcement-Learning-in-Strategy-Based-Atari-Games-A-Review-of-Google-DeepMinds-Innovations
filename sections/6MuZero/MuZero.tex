@@ -16,12 +16,11 @@ state-of-the-art results in almost all of them.
 
 % MuZero Algorithm
 \subsection{MuZero Algorithm}
-\begin{figure}[h!]
+\begin{figure*}[t]
     \centering
-    \includegraphics[width=0.35\textwidth]{sections/6MuZero/graph_1.png}
-    \caption{(A) The progression of the model through its MDP. (B)MuZero acting as an environment with MCTS as feedback. (C)A diagram of training MuZero's model.}
-    \label{fig_1}
-\end{figure}
+    \includegraphics[width=0.8\textwidth]{sections/6MuZero/graph_1.png}
+    \caption{(A) Represents the progression of the model through its MDP, while (B) Represents MuZero acting as an environment with MCTS as feedback, and (C) Represents a diagram of training MuZero's model.}
+\end{figure*}
 The model takes in an input of observations $o_1, \ldots, o_t$ that are then fed to a representation network $h$,
 which reduces the dimensions of the input and produces a root hidden state $s_0$. Internally, the model
 mirrors an MDP, with each state representing a node with edges connecting it to the future states
