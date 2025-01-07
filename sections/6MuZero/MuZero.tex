@@ -1,3 +1,4 @@
+
 % Introduction
 \subsection*{Introduction}
 Through the development of AlphaZero, a general model for board games with superhuman ability has 
@@ -101,7 +102,7 @@ ends, and the updated trajectory is added to the state-transition reward table. 
 games, board games, for example, the value function is bounded between 0 and 1, which is helpful to 
 use value estimation and probability using the pUCT rule. However, many other environments have 
 unbounded values, so MuZero rescales the value to the maximum value observed by the model up to 
-this training step, ensuring no environment-specific data is needed.
+this training step, ensuring no environment-specific data is needed.\cite{mz1}
 
 % Results
 \subsection*{Results}
@@ -135,7 +136,8 @@ The MuZero model demonstrated significant improvements across various test cases
     \item General challenges:
     \begin{itemize}
         \item Long-term dependencies remain difficult for MuZero, as is the case for RL models in general.
-        \item Limited input space and lack of combinatorial inputs in Atari games could introduce scalability issues for broader applications.
+        \item Limited input space and lack of combinatorial inputs in Atari games could introduce scalability issues for broader applications.\cite{mz1}
     \end{itemize}
 \end{itemize}
+
 
