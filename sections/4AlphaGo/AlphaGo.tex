@@ -15,11 +15,11 @@
 
 \maketitle
 
-
 \section{Introduction}
-AlphaGo is a groundbreaking ai model that utilizes neural networks and tree search to play the game of Go, which is thought to be one of the most challenging classic games for artificial intelligence owing to its enormous search space and the difficulty of evaluating board positions and moves.
+AlphaGo is a groundbreaking AI model that utilizes neural networks and tree search to play the game of Go, which is thought to be one of the most challenging classic games for artificial intelligence owing to its enormous search space and the difficulty of evaluating board positions and moves \cite{Silver2016}.
 \\\\
 AlphaGo uses value networks for position evaluation and policy networks for taking actions, that combined with Monte Carlo simulation achieved a 99.8\% winning rate, and beating the European human Go champion in 5 out 5 games.
+
 \section{Key Innovations}
 
 \subsection{Integration of Policy and Value Networks with MCTS}
@@ -49,7 +49,6 @@ V(s_L) = \lambda v_\theta(s_L) + (1 - \lambda) z_L
 \]
 
 The back propagation step updates the statistics of all nodes along the path from the root to the leaf.
-
 
 \section{Training Process}
 
@@ -107,5 +106,10 @@ AlphaGo achieved the following milestones:
     \item Won 77\%, 86\%, and 99\% of handicap games against Crazy Stone, Zen and Pachi, respectively.
     \item Victory against professional human players such as Fan Hui (5-0) and Lee Sedol (4-1), marking a significant breakthrough in AI.
 \end{itemize}
-\end{document}
 
+\bibliography{references}
+\begin{thebibliography}{1}
+\bibitem{Silver2016}
+D. Silver et al., “Mastering the game of Go with deep neural networks and tree search,” \textit{Nature}, vol. 529, no. 7587, pp. 484–489, Jan. 2016, doi: https://doi.org/10.1038/nature16961.
+\end{thebibliography}
+\end{document}
