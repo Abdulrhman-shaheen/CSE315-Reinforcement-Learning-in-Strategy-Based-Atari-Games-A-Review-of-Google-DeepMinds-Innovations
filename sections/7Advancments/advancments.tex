@@ -11,14 +11,38 @@ performance by learning solely through self-play. MuZero took this
 innovation further by generalizing beyond specific games like Go, 
 Chess, and Shogi, employing model-based reinforcement learning to 
 predict dynamics without explicitly knowing the rules of the environment.
-\subsection{MiniZero}
+Completing on these three models, here are some of the advancements that 
+developed from them: AlphaZero and MiniZero; and one of the most used 
+in generating AI models, Multi-agent models. 
+\subsection*{AlphaZero}
+While AlphaGo Zero was an impressive feat, designed specifically to 
+master the ancient game of Go through self-play, AlphaZero developes it 
+by generalizing its learning framework to 
+include multiple complex games: chess, shogi (Japanese chess), and Go. 
+the key advancement is in its ability to apply the same algorithm 
+across different games without requiring game-specific adjustments. 
+AlphaZero's neural network is trained through self-play, predicting 
+the move probabilities and game outcomes for various positions. This 
+prediction is then used to guide the MCTS, which explores potential 
+future moves and outcomes to determine the best action. Through 
+iterative self-play and continuous refinement of the neural network, 
+AlphaZero efficiently learns and improves its strategies across 
+different games\cite{AD3}.
+Another significant improvement is in AlphaZero’s generalized algorithm, 
+is that it does not need to be fine-tuned for each specific game. This was 
+a departure from AlphaGo Zero’s Go-specific architecture, making 
+AlphaZero a more versatile AI system.\\ AlphaZero's architecture integrates a 
+single neural network that evaluates both the best moves and the 
+likelihood of winning from any given position, streamlining the 
+learning process by eliminating the need for separate policy and 
+value networks used in earlier systems. This innovation not only
+enhances computational efficiency but also enables AlphaZero to adopt 
+unconventional and creative playing styles that diverge from 
+established human strategies.
+\subsection*{MiniZero}
 MiniZero is a a zero-knowledge learning framework that supports four 
 state-of-the-art algorithms, including AlphaZero, MuZero, Gumbel 
-AlphaZero, and Gumbel MuZero\cite{AD1}. The difference between 
-AlphaZero and AlphaGo Zero is that AlphaZero expanded upon the 
-principles of AlphaGo Zero, making it a more generalized version 
-that could master multiple games, including Go, Chess, and Shogi, 
-using the same algorithm and architecture. Gumbel AlphaZero and Gumbel 
+AlphaZero, and Gumbel MuZero\cite{AD1}. Gumbel AlphaZero and Gumbel 
 MuZero are variants of the AlphaZero and MuZero algorithms that 
 incorporate Gumbel noise into their decision-making process to improve 
 exploration and planning efficiency in reinforcement learning tasks.
@@ -31,7 +55,7 @@ making it easier to implement and experiment with. This simplification
 allows MiniZero to perform well in smaller environments with fewer states 
 and actions, offering faster training times and requiring fewer computational 
 power compared to MuZero. 
-\subsection{Multi-agent models}
+\subsection*{Multi-agent models}
 Multi-agent models in reinforcement learning (MARL) represent an extension of traditional single-agent reinforcement learning. 
 In these models, multiple agents are simultaneously 
 interacting, either competitively or cooperatively, making decisions 
