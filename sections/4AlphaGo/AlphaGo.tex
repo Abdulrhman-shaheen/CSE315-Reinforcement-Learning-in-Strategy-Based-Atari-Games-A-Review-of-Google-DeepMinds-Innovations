@@ -1,10 +1,28 @@
-\subsection{Introduction}
-AlphaGo is a groundbreaking reinforcement learning model that utilizes neural networks and tree search to play the game of GO, which is thought to be one of the most challenging classic games for artificial intelligence owing to its enormous search space and the difficulty of evaluating board positions and moves.
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{AlphaGo: The Intersection of Neural Networks and Monte Carlo Tree Search\\
+}
+
+\maketitle
+
+\section{Introduction}
+AlphaGo is a groundbreaking AI model that utilizes neural networks and tree search to play the game of Go, which is thought to be one of the most challenging classic games for artificial intelligence owing to its enormous search space and the difficulty of evaluating board positions and moves \cite{Silver2016}.
 \\\\
 AlphaGo uses value networks for position evaluation and policy networks for taking actions, that combined with Monte Carlo simulation achieved a 99.8\% winning rate, and beating the European human Go champion in 5 out 5 games.
-\subsection{Key Innovations}
 
-\subsubsection*{Integration of Policy and Value Networks with MCTS}
+\section{Key Innovations}
+
+\subsection{Integration of Policy and Value Networks with MCTS}
 AlphaGo combines policy and value networks in an MCTS framework to efficiently explore and evaluate the game tree. Each edge \( (s, a) \) in the search tree stores:
 \begin{itemize}
     \item Action value \( Q(s, a) \): The average reward for taking action \( a \) from state \( s \).
@@ -32,10 +50,9 @@ V(s_L) = \lambda v_\theta(s_L) + (1 - \lambda) z_L
 
 The back propagation step updates the statistics of all nodes along the path from the root to the leaf.
 
+\section{Training Process}
 
-\subsection{Training Process}
-
-\subsubsection{Supervised Learning for Policy Networks}
+\subsection{Supervised Learning for Policy Networks}
 The policy network was initially trained using supervised learning on human expert games. The training data consisted of 30 million board positions sampled from professional games on the KGS Go Server. The goal was to maximize the likelihood of selecting the human move for each position:
 \[
 \Delta \sigma \propto \nabla_\sigma \log p_\sigma(a | s)
@@ -44,7 +61,7 @@ where \( p_\sigma(a | s) \) is the probability of selecting action \( a \) given
 
 This supervised learning approach achieved a move prediction accuracy of 57.0\% on the test set, significantly outperforming prior methods. This stage provided a solid foundation for replicating human expertise.
 
-\subsubsection{Reinforcement Learning for Policy Networks}
+\subsection{Reinforcement Learning for Policy Networks}
 The supervised learning network was further refined through reinforcement learning (RL). The weights of the RL policy network were initialized from the SL network. AlphaGo then engaged in self-play, where the RL policy network played against earlier versions of itself to iteratively improve.
 
 The reward function used for RL was defined as:
@@ -64,7 +81,7 @@ where \( z_t \) is the final game outcome from the perspective of the current pl
 
 This self-play strategy allowed AlphaGo to discover novel strategies beyond human knowledge. The RL policy network outperformed the SL network with an 80\% win rate and achieved an 85\% win rate against Pachi, a strong open-source Go program, without using MCTS.
 
-\subsubsection{Value Network Training}
+\subsection{Value Network Training}
 The value network was designed to evaluate board positions by predicting the likelihood of winning from a given state. Unlike the policy network, it outputs a single scalar value \( v_\theta(s) \) between \(-1\) (loss) and \(+1\) (win).
 
 Training the value network on full games led to overfitting due to the strong correlation between successive positions in the same game. To mitigate this, a new dataset of 30 million distinct board positions was generated through self-play, ensuring that positions came from diverse contexts.
@@ -73,7 +90,7 @@ The value network was trained by minimizing the mean squared error (MSE) between
 \[
 L(\theta) = \mathbb{E}_{(s, z) \sim D} \left[ (v_\theta(s) - z)^2 \right]
 \]
-\subsection{Challenges and Solutions}
+\section{Challenges and Solutions}
 AlphaGo overcame several challenges:
 \begin{itemize}
     \item Overfitting: Training the value network on full games led to memorization. This was mitigated by generating a diverse self-play dataset.
@@ -81,7 +98,7 @@ AlphaGo overcame several challenges:
     \item Exploration vs. Exploitation: Balancing these in MCTS was achieved using the exploration bonus \( u(s, a) \) and the policy network priors.
 \end{itemize}
 
-\subsection{Performance Benchmarks}
+\section{Performance Benchmarks}
 AlphaGo achieved the following milestones:
 \begin{itemize}
     \item 85\% win rate against Pachi without using MCTS.
@@ -90,4 +107,10 @@ AlphaGo achieved the following milestones:
     \item Victory against professional human players such as Fan Hui (5-0) and Lee Sedol (4-1), marking a significant breakthrough in AI.
 \end{itemize}
 
-
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\begin{thebibliography}{1}
+\bibitem{Silver2016}
+D. Silver et al., “Mastering the game of Go with deep neural networks and tree search,” \textit{Nature}, vol. 529, no. 7587, pp. 484–489, Jan. 2016, doi: https://doi.org/10.1038/nature16961.
+\end{thebibliography}
+\end{document}
