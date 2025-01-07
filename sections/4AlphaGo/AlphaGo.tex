@@ -49,6 +49,13 @@ single best move.
 
 Conversely though, the value network that was derived from the RL policy
 performed better than the one derived from the SL policy.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth, height=0.2\textheight, keepaspectratio]{innovation.png}
+    \caption{Performance of AlphaGo, on a single machine, for different
+combinations of components.}
+\end{figure}
+
 \subsection{Training Process}
 
 \subsubsection{Supervised Learning for Policy Networks}
@@ -113,6 +120,13 @@ between its predictions \( v_\theta(s) \) and the actual game outcomes \( z \):
     L(\theta) = \mathbb{E}_{(s, z) \sim D} \left[ (v_\theta(s) - z)^2 \right]
 \end{equation}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth, height=0.2\textheight, keepaspectratio]{mse.png}
+    \caption{Comparison of evaluation
+accuracy between the value network and rollouts with different policies.}
+\end{figure}
+
 \subsection{Challenges and Solutions}
 AlphaGo overcame several challenges:
 \begin{itemize}
@@ -135,3 +149,9 @@ AlphaGo achieved the following milestones:
     \item Victory against professional human players such as Fan Hui (5-0) and Lee Sedol
           (4-1), marking a significant breakthrough in AI.
 \end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth, height=0.2\textheight, keepaspectratio]{comparison.png}
+    \caption{Elo rating comparison between AlphaGo and other Go programs.}
+\end{figure}
