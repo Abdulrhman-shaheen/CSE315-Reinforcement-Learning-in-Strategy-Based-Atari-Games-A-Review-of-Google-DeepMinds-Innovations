@@ -215,7 +215,7 @@ return, it estimates the return based on the next state. The key idea behind TD
 is to update the value function based on the difference between the current
 estimate and the estimate of the next state. The TD return is then given by:
 \begin{equation}
-    G_t = r_t + \gamma V(s_{t+1})
+    G_t = r_{t+1} + \gamma V(s_{t+1})
 \end{equation}
 that's the target (return value estimation) of state $s$ at time $t$ is the immediate reward $r$ plus the
 discounted value of the next state $s_{t+1}$.\\
