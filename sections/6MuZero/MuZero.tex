@@ -1,4 +1,3 @@
-
 % Introduction
 \subsection{Introduction}
 Through the development of AlphaZero, a general model for board games with
@@ -7,30 +6,20 @@ could achieve these results without the need for human gameplay data or
 history, instead using self-play in an enclosed environment. However, the model
 still relied on a simulator that could perfectly replicate the behavior, which
 might not translate well to real-world applications, where modeling the system
-might not be feasible. In an essence AlphaZero needed a chess engine for it learn chess, but reality can't be easily translated to a perfect engine.MuZero was developed to address this challenge by developing a model-based RL approach that could learn without explicitly
+might not be feasible. MuZero was developed to address this challenge by
+developing a model-based RL approach that could learn without explicitly
 modeling the real environment. This allowed for the same general approach used
 in AlphaZero to be used in Atari environments where reconstructing the
-environment is costly. The model then learned both the rules of the environment it was in alongside the necessary strategies and moves to succeed.
-Essentially, MuZero was deployed to the games with
+environment is costly. Essentially, MuZero was deployed to all the games with
 no prior knowledge of them or specific optimization and managed to show
-state-of-the-art results in almost all of them. 
-
-\subsection{MuZero functions}
-
-MuZero consists of three functions that mainly encompass both environment modeling and decision taking processes; these functions are the representation function(h), the dynamics function(g), and the prediction function(f). 
-
-\begin{itemize}
-    \item The representation function (eq 25) takes an encoded state of the real system and convert it to a hidden state optimized for the model. This process ensures both dynamic environment modeling and effective data emphasis. For example in space invaders, the static background might be omitted from the hidden state in favor of emphasis on the positions of the aliens. This function is environment dependent as each present its own input space with unique characteristics.
-    \item The dynamics function (eq 26) is MuZero's replacement for a simulator. It's responsible for state progression through different actions. The function takes a hidden state and an action and outputs the next state if the action is performed and immediate reward of the action. As the model evolves, the dynamics function output closely resembles the representation function of future states. 
-    \item The prediction function (eq 27) is the standard RL function that tries to predict the policy and value given a state. It takes a hidden state and outputs the optimum policy and the value associated of that policy. 
-\end{itemize}
+state-of-the-art results in almost all of them.
 
 % MuZero Algorithm
 \subsection{MuZero Algorithm}
 \begin{figure*}[t]
     \centering
     \includegraphics[width=0.8\textwidth]{sections/6MuZero/graph_1.png}
-    \caption{(A) The model planing starting with environment encoding with representation function(h) which outputs a hidden state. A candidate action $a^{k}$ is combined with a previous state $s^{k-1}$ and the dynamics function (g) outputs the immediate reward $r^{k}$ and the next state $s^{k}$. The prediction function takes each state s^{k} and outputs the value $v^{k}$ and policy $p^{k}$.(B) Represents MuZero acting as an environment. A Monte-Carlo tree search is performed which produces a search policy $u_t$. An action $a_{t+1}$ is sampled from the search policy proportional to its visit count. The dynamics function receives the action and generates the next state $s_{t+1}$(C) Represents a diagram of MuZero's training process. The model takes a trajectory of observations $o_0$...$o_t$ and actions $a_0$...$a_t$}. The initial observation $o_0$ is fed into the representation function which generates the first hidden state $s_0$. The dynamics function g takes the real action $a_{t+k}$ and the hidden state $s_{k-1}$ and generates $s_{k}$ alongside $r_{t+k}$. Each state $s_k$ generates $v_k$ and $p_k$.
+    \caption{(A) Represents the progression of the model through its MDP, while (B) Represents MuZero acting as an environment with MCTS as feedback, and (C) Represents a diagram of training MuZero's model.}
 \end{figure*}
 The model takes in an input of observations $o_1, \ldots, o_t$ that are then fed to a representation network $h$,
 which reduces the dimensions of the input and produces a root hidden state $s_0$. Internally, the model
@@ -118,8 +107,6 @@ unbounded values, so MuZero rescales the value to the maximum value observed by
 the model up to this training step, ensuring no environment-specific data is
 needed.\cite{mz1}
 
-
-
 % Results
 \subsection{Results}
 The MuZero model demonstrated significant improvements across various test
@@ -165,5 +152,3 @@ findings include:
           \end{itemize}
 \end{itemize}
 
-
-\end{document}
