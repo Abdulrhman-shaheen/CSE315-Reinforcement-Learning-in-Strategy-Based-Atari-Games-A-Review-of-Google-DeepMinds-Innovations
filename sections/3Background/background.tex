@@ -5,7 +5,7 @@
 \titlespacing*{\paragraph}{2em}{0.5ex plus 0.2ex minus .2ex}{0em}
 
 Reinforcement Learning (RL) is a key area of machine learning that focuses on
-learning through interaction with the environment. In RL, an agent takes
+learning through interaction with the environment  \cite{bg2}. In RL, an agent takes
 actions (A) in specific states (S) with the goal of maximizing the rewards (R)
 received from the environment. The foundations of RL can be traced back to
 1911, when Thorndike introduced the Law of Effect, suggesting that actions
@@ -13,11 +13,21 @@ leading to favorable outcomes are more likely to be repeated, while those
 causing discomfort are less likely to recur \cite{bg1}.\\ RL emulates the human
 learning process of trial and error. The agent receives positive rewards for
 beneficial actions and negative rewards for detrimental ones, enabling it to
-refine its policy function—a strategy that dictates the best action to take in
-each state. That's said, for a give agent in state $u$, if it takes action $u$,
-then the immediate reward $r$ can be modeled as $r(x, u) = \mathbb{E}[r_t \mid
-    x=x_{t-1}, u=u_{t-1}]$.\\ So for a full episode of $T$ steps, the cumulative
-reward $R$ can be modeled as $R = \sum_{t=1}^{T} r_t$.\\
+refine its policy function ($\pi$) —a strategy that dictates the best action to take in
+each state. That's said, for a given agent in state $\textbf{s}$, if it takes action $\textbf{a}$,
+then the immediate reward $\textbf{r}$ can be modeled as $r(s, a) = \mathbb{E}[r_t \mid
+    s=s_{t-1}, a=a_{t-1}]$. So for a full episode of $T$ steps, the cumulative
+reward \textbf{$R$} can be modeled as $R = \sum_{t=1}^{T} r_t$.\\
+
+%Insert a short parahraph that should introduce the MDP section.
+
+To formally capture the interaction between an agent and its environment,
+reinforcement learning problems are often expressed within the framework
+of a \textbf{Markov Decision Process (MDP)}. The MDP provides a mathematical structure
+for modeling sequential decision-making, allowing us to define states,
+actions, rewards, and transitions in a rigorous way.
+
+
 \subsection{Markov Decision Process (MDP)}
 
 In reinforcement learning, the environment is often modeled as a \textbf{Markov
@@ -30,12 +40,12 @@ where:
     \item \( R \) is the reward function, and
     \item \( \gamma \) is the discount factor.
 \end{itemize}
-
+ 
 The MDP framework is grounded in \textbf{sequential decision-making}, where the
 agent makes decisions at each time step based on its current state. This
 process adheres to the \textbf{Markov property}, which asserts that the future
 state and reward depend only on the present state and action, not on the
-history of past states and actions.
+history of past states and actions\cite{bg2}.
 
 Formally, the Markov property is represented by:
 
@@ -55,7 +65,7 @@ The reward function \( R \) is similarly defined as:
 which represents the expected reward received after taking action $a$ in state
 $S$.
 \subsection{Policy and Value Functions}
-In reinforcement learning, an agent's goal is to find the optimal policy that
+In reinforcement learning, an agent's goal is to find the optimal \textbf{policy} ($\pi$) that
 the agent should follow to maximize cumulative rewards over time. To facilitate
 this process, we need to quantify the desirability of a given state, which is
 done through the \textbf{value function} $V(s)$. Value function estimates the
@@ -66,20 +76,21 @@ decision-making process. The \textbf{state-value function} is then defined as:
 
 \begin{equation}\label{eq:v_pi}
     \begin{split}
-        V_\pi(s) & = \mathbb{E_\pi}[G_t \mid s_t = s]                            \\
+        V^\pi(s) & = \mathbb{E_\pi}[G_t \mid s_t = s]                            \\
                  & = \mathbb{E_\pi}[r_t + \gamma r_{t+1}  + \ldots \mid s_t = s]
     \end{split}
 \end{equation}
 
-where \( G_t \) is the cumulative reward from time step $t$ onwards. From here
-we can define another value function the \textbf{action-value function} under
-policy $\pi$, which is $Q_\pi(s, a)$, that estimates the expected cumulative
+where \( G_t \) is the cumulative reward from time step $t$ onwards\cite{bg2}. \\
+
+From here we can define another value function the \textbf{action-value function} under
+policy $\pi$, which is $Q^\pi(s, a)$, that estimates the expected cumulative
 reward from the state $s$ and taking action $a$ and then following policy
 $\pi$:
 
 \begin{equation}\label{eq:q_pi}
     \begin{split}
-        Q_\pi(s, a) & = \mathbb{E_\pi}[G_t \mid s_t = s, a_t = a]                            \\
+        Q^\pi(s, a) & = \mathbb{E_\pi}[G_t \mid s_t = s, a_t = a]                            \\
                     & = \mathbb{E_\pi}[r_t + \gamma r_{t+1}  + \ldots \mid s_t = s, a_t = a]
     \end{split}
 \end{equation}
@@ -90,7 +101,7 @@ rewards \cite{bg2}.\\
 
 We say that a policy $\pi$ is better than another policy $\pi'$ if the expected
 return of every state under $\pi$ is greater than or equal to the expected
-return of every state under $\pi'$, i.e., $V_\pi(s) \geq V_{\pi'}(s)$ for all
+return of every state under $\pi'$, i.e., $V^\pi(s) \geq V^{\pi'}(s)$ for all
 $s \in S$. Eventually, there will be a policy (or policies) that are better
 than or equal to all other policies, this is called the \textbf{optimal policy}
 $\pi^*$. All optimal policies will then share the same optimal state-value
@@ -99,8 +110,8 @@ are defined as:
 
 \begin{equation}
     \begin{split}
-        V^*(s)    & = \max_\pi V_\pi(s)    \\
-        Q^*(s, a) & = \max_\pi Q_\pi(s, a)
+        V^*(s)    & = \max_\pi V^\pi(s)    \\
+        Q^*(s, a) & = \max_\pi Q^\pi(s, a)
     \end{split}
 \end{equation}
 
@@ -111,7 +122,7 @@ the state-value (or action-value) function at each state, i.e., $\pi^*(s) =
 
 \subsection{Reinforcement Learning Algorithms}
 There are multiple reinforcement learning algorithms that have been developed
-that falls under a lot of categories. But, for the sake of this review, we will
+that falls under a lot of categories \cite{bg3}. But, for the sake of this review, we will
 focus on the following algorithms that have been used by the Google DeepMind
 team in their reinforcement learning models.\\
 
@@ -134,7 +145,7 @@ each state based on the Bellman equation:
 
 Starting with an arbitrary initial value \( V^\pi(s) \), the updates are
 repeated for all states until the value function converges to a stable
-estimate.
+estimate\cite{bg2}.
 
 \paragraph{Policy Improvement}
 Once the value function \( V^\pi(s) \) has been computed, the policy is
@@ -171,7 +182,7 @@ state, as
 
 Dynamic Programming's systematic approach to policy evaluation and improvement
 forms the foundation for the techniques that have been cruical in training
-systems like AlphaGo Zero and MuZero.
+systems like AlphaGo Zero and MuZero\cite{bg2}.
 
 \subsubsection{\textbf{Model-Free Algorithms}}
 
@@ -179,7 +190,7 @@ systems like AlphaGo Zero and MuZero.
 The Monte Carlo (MC) algorithm is a model-free reinforcement learning method
 that estimates the value of states or state-action pairs under a given policy
 by averaging the returns of multiple episodes. Unlike DP, MC does not require a
-perfect model of the environment and instead learns from sampled experiences.
+perfect model of the environment and instead learns from sampled experiences \cite{bg2}.
 
 The key steps in MC include:
 
@@ -239,14 +250,14 @@ next state. The update rule for Q-learning is:
 
 and after the algorithm converges, the optimal policy can be obtained by
 selecting the action that maximizes the action-value function at each state, as
-$\pi^*(s) = \arg\max_a Q^*(s, a)$.
+$\pi^*(s) = \arg\max_a Q^*(s, a)$ \cite{bg2}.
 
 Temporal Difference methods, including Q-learning, play a crucial role in
 modern reinforcement learning by enabling model-free value function estimation
 and action selection without the need to terminate the episode. In systems like
 AlphaGo and MuZero, TD methods are used to update value functions efficiently
 and support complex decision-making processes without requiring a model of the
-environment.
+environment\cite{bg2}.
 
 \subsubsection{\textbf{Deep RL: Deep Q-Network (DQN)}}
 
@@ -254,7 +265,7 @@ Deep Q-Networks (DQN) represent a significant leap forward in the integration
 of deep learning with reinforcement learning. DQN extends the traditional
 Q-learning algorithm by using a deep neural network to approximate the Q-value
 function, which is essential in environments with large state spaces where
-traditional tabular methods like Q-learning become infeasible.
+traditional tabular methods like Q-learning become infeasible \cite{bg3}.
 
 In standard Q-learning, the action-value function \(Q(s, a)\) is learned
 iteratively based on the Bellman equation, which updates the Q-values according
