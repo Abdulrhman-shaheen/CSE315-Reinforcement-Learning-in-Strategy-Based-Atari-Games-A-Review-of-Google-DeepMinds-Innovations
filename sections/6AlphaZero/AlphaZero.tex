@@ -1,0 +1,60 @@
+\subsection{Introduction}
+
+AlphaZero is a generalized reinforcement learning framework that extends the methodology of AlphaGo Zero beyond the domain of Go. It employs the same core components—self-play reinforcement learning, deep neural networks with policy and value heads, and Monte Carlo Tree Search (MCTS)—but is designed to operate across Shogi, Chess, and Go. With only minimal adjustments to the input and output representations to account for game-specific rules, AlphaZero achieved superhuman performance in Go, Chess, and Shogi, thereby demonstrating the domain-independence and general applicability of the approach.
+
+\subsection{Key Innovations}
+AlphaZero introduced several advancements over AlphaGo Zero, 
+extending its applicability and improving efficiency:
+
+\begin{enumerate}
+    \item Generalization Across Games: Unlike AlphaGo Zero, 
+    which was designed exclusively for Go, AlphaZero applied the 
+    same reinforcement learning framework to \textit{Go, Chess, and Shogi}. 
+    With only minimal modifications to the input and output representations 
+    to encode different rules and move sets, AlphaZero demonstrated 
+    the domain-independence of the algorithm.
+    
+    \item Game-Agnostic Training Procedure: AlphaZero 
+    established the training process as a fully general loop applicable 
+    to multiple strategy games. Self-play guided by MCTS generated 
+    training examples $(s_t, \pi_t, z)$, and the neural network was 
+    updated using the same loss function as in AlphaGo Zero. 
+    No game-specific heuristics or specialized adjustments were required, 
+    confirming the general-purpose nature of the approach.
+    
+    \item Improved Efficiency: AlphaZero achieved strong 
+    performance with approximately 800 MCTS simulations per move, 
+    compared to the $\sim$1,600 simulations typically used by AlphaGo Zero. 
+    This reduction highlights the efficiency of its policy--value network 
+    in guiding search and reduced the computational cost of training 
+    and inference.
+    
+    \item Cross-Domain Superiority: Beyond outperforming 
+    AlphaGo Zero in Go, AlphaZero achieved superhuman results in Chess 
+    and Shogi, decisively defeating \textit{Stockfish} and \textit{Elmo}, 
+    the strongest domain-specific engines at the time. These results 
+    established AlphaZero as the first general reinforcement learning 
+    system to surpass highly optimized, handcrafted programs across 
+    multiple complex strategy games.
+\end{enumerate}
+
+\subsection{Performance Benchmarks}
+
+\subsubsection{Chess}
+AlphaZero was evaluated against Stockfish, the strongest chess engine at the time. After only 24 hours of training from random play, AlphaZero achieved a dominant performance. \\
+In a 100-game match under one-minute per move time controls, it recorded the following results: \\
+\begin{enumerate}
+    \item 28 wins, 72 draws, and 0 losses as White
+    \item 25 wins, 73 draws, and 2 losses as Black
+\end{enumerate}
+These results demonstrated that AlphaZero could surpass a hand-crafted, search-intensive engine within a single day of training. \\
+
+\subsubsection{Shogi}
+In Shogi, AlphaZero was trained for 24 hours and then matched against Elmo, the world champion program. In a 100-game match under one-minute per move controls, AlphaZero achieved 90 wins, 8 draws, and only 2 losses, a result that established it as the strongest known Shogi player, human or machine, at the time. \\
+
+\subsubsection{Go}
+
+AlphaZero was compared directly with AlphaGo Zero, its predecessor and the strongest Go-playing system prior to this work. Despite the short training duration of 24 hours, AlphaZero won 60 games to 40 in a 100-game match. This result demonstrated that AlphaZero not only generalized across domains but also improved upon the performance of domain-specialized systems.
+
+
+

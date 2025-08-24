@@ -64,8 +64,7 @@ to update the neural network \( f_\theta \) by minimizing the cross-entropy
 loss between the predicted policy by $f_\theta$ and the MCTS policy.
 
 \subsubsection{Policy Iteration and self play}
-The agent plays games against itself using the predicted policy $P(s, a)$. The
-agent uses the MCTS to select the best move at each state and the game is
+The agent uses the MCTS to select the best move at each state and the game is
 played till the end in a process called self play. The agent then uses the
 outcome of the game, $z$ game winner and $\pi$ to update the neural network.
 This process is repeated for a large number of iterations.
@@ -90,7 +89,7 @@ collected during the game. This process involves several key steps:
           and $z_t$ is the game outcome.
     \item Network training process: after collecing data from self-play, The neural
           network $f_\theta$ is adjusted to minimize the error between the predicted
-          value v and the self-play winnder z, and to maximize the similarity between the
+          value v and the self-play winner z, and to maximize the similarity between the
           search probabilities $P$ and the MCTS probabilities. This is done by using a
           loss function that combines the mean-squared error and the cross entropy losses
           repsectibly. The loss function is defined as
@@ -122,20 +121,22 @@ Alpha Go Zero overcame several challanges:
 
 \subsection{Performance Benchmarks}
 
-AlphaGo Zero introduced a significant improvement in neural network
-architecture by employing a unified residual network (ResNet) design for its
-$f_\theta$ model. This replaced the separate CNN-based architectures previously
-used in AlphaGo, which consisted of distinct networks for policy prediction and
-value estimation. \\\\ The superiority of this approach is evident in the Elo
-rating comparison shown in fig.\ref{fig:results_agz}. The "dual-res"
-architecture, utilized in AlphaGo Zero, achieved the highest Elo rating,
-significantly outperforming other architectures like "dual-conv" and "sep-conv"
-used in earlier versions of AlphaGo.
+Evaluating the performance of DeepMind’s reinforcement learning (RL) agents for strategy games such as Go has primarily been conducted using Elo ratings and direct head-to-head matches against previous versions. \\
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.35\textwidth]{sections/5AlphaGo Zero/Results_agz.png}
-    \caption{Elo rating comparison of different neural network architectures.}
-    \label{fig:results_agz}
-\end{figure}
+Table \ref{tab:elo_ratings} summarizes the reported Elo ratings of the different versions of AlphaGo, illustrating the rapid progression in strength achieved through successive architectural improvements.
 
+\begin{table}[ht]
+\caption{Elo ratings of different AlphaGo versions}
+\label{tab:elo_ratings}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Model          & Elo rating \\ \hline
+AlphaGo Zero   & 5185       \\ \hline
+AlphaGo Master & 4858       \\ \hline
+AlphaGo Lee    & 3739       \\ \hline
+AlphaGo Fan    & 3144       \\ \hline
+\end{tabular}
+\end{table}
+
+Additionally, AlphaGo Zero defeated the then state-of-the-art AlphaGo Master in a 100-game match with a score of 89–11, demonstrating the effectiveness of self-play reinforcement learning without the need for Monte Carlo rollouts or human expert data.
