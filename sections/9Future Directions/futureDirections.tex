@@ -1,53 +1,27 @@
-%Future Directions%
-As mentioned earlier in the paper, The development of the AI models and systems
-in the field of gaming represent a good training set for the models to study
-the environment, address the challenges, modify the models, and achieve good
-results in this field, to judge whether this model is able to be implemented in
-real world, and how it can be implemented. The main purpose from such models,
-Google DeepMind, through the previous years, had been training the models to
-play games, and the main goal was to implement the models of reinforcement
-learning in real life, and benefit from them. DeepMind already started in this
-implementation with MuZero, and developing other models to be able to be
-implemented in real life directly.
-\subsection*{MuZero's first step from research into the real world}
-One of the notable implementations of MuZero has been in collaboration with
-YouTube, where it was used to optimize video compression within the open-source
-VP9 codec. This involved adapting MuZero's ability to predict and plan, which
-it had previously demonstrated in games, to a complex and practical task of
-video streaming. By optimizing the encoding process, as shown in fig. 3, MuZero
-achieved an average bitrate reduction of 4\% without degrading video
-quality\cite{FD1}. This improvement directly impacts the efficiency of video
-streaming services such as YouTube, Twitch, and Google Meet, leading to faster
-loading times and reduced data usage for users. This implementation is called
-MuZero Rate-Controller (MuZero-RC). Beyond video compression, this initial
-application of MuZero outside of game research settings exemplifies how
-reinforcement learning agents can address practical real-world challenges. By
-designing agents with new capabilities to enhance products across different
-sectors, computer systems can be more efficient, less resource-intensive, and
-increasingly automated\cite{FD1}.
-\subsection*{AlphaFold}
-AlphaFold is a model developed by DeepMind that addresses one of the
-challenging problems in biology, which is predicting the three-dimensional
-structures of proteins from their amino acid sequences. AlphaFold employs
-advanced deep learning techniques, prominently featuring reinforcement
-learning, to enhance its predictive capabilities.The model operates on a
-feedback loop where it generates predictions about protein structures and
-receives rewards based on the accuracy of these predictions compared to
-experimentally determined structures. This process allows AlphaFold to
-iteratively refine its models, optimizing them to better reflect the
-complexities of protein folding dynamics. The architecture of AlphaFold
-includes deep neural networks that analyze both the sequential and spatial
-relationships between amino acids, enabling it to capture intricate patterns
-for protein conformation. By training on extensive datasets of known protein
-structures, AlphaFold has achieved unprecedented accuracy, often rivaling
-experimental methods such as X-ray crystallography and cryo-electron
-microscopy\cite{FD2}.\\\\ As shown form the previous models, how the employment
-of reinforcementl learning changed starting from making AI systems which play
-atari and strategy-based games, reaching to help in human biology and create
-protein structures, the enployment of reinforcement learning in games still has
-a long journey to be developed which helps in both real life and gaming. Google
-DeepMind is still working on other models which are able to be implemented in
-real life applications. They also developed models which use the multi-agent
-models in games, like AlphaStar, which is a model to play StarCraft II; but
-still didn't apply them in real life applications, which is a good future
-direction to be developed.
+
+\label{sec:future}
+
+The Alpha series demonstrated a remarkable capacity for mastering environments through self-play, a feat extended by MuZero, which learned an internal model without a simulator. Despite their success, these models are fundamentally limited to single-player, deterministic games. The next critical step in their evolution is to expand their scope to more complex and realistic settings. Furthermore, the core environment discovery algorithm must be enhanced to operate effectively in wider state and action spaces. This section discusses pioneering advancements in these directions, including multi-agent generalization, algorithmic improvements for exploration, and handling stochasticity.
+
+\subsection{Model-based Multi-Agent Reinforcement Learning}
+\label{subsec:multiagent}
+
+Traditional RL models, including the Alpha series, focus on optimizing a strategy in a stationary environment. However, many real-world applications require collaboration or competition between multiple agents. Deploying multiple agents introduces fundamental challenges: the environment becomes non-stationary from any single agent's perspective, partial observability is common, and the problems of coordination, reward assignment, and scalability become paramount. These challenges make MARL significantly more complex and sample inefficient.
+
+A key future direction is to extend the model-based planning principles of MuZero to these multi-agent settings. Model-based methods have demonstrated higher sample efficiency in complex single-agent environments, a trait that is critically needed to tackle the exponential complexity of MARL \cite{wang2023model}. The goal is to develop agents that can not only predict environment dynamics but also model the strategies of other agents, enabling sophisticated planning in competitive or cooperative spaces.
+
+This remains a formidable open challenge. Projects like AlphaStar \cite{vinyals2019alphastar} show that superhuman performance in complex multi-agent games is possible, but they rely on immense computational resources and specialized architectures. Future research must focus on making such planning efficient and generalizable. For instance, recent work explores using deep networks to model diverse agent behaviors and improve coordination, as seen in approaches that learn diverse Q-vectors \cite{luo2023multi} or use centralized training for decentralized execution, pushing the boundaries of what is possible in cooperative tasks like multi-robot coordination.
+
+\subsection{Algorithmic Enhancements for Exploration and Efficiency}
+\label{subsec:algorithmic}
+
+A parallel direction for advancement lies in enhancing the core algorithms themselves to improve their sample efficiency, exploration capabilities, and computational footprint. The monumental computational cost of training models like MuZero from scratch remains a significant barrier to wider application and experimentation.
+
+The \textbf{MiniZero} framework \cite{wu2023minizero} provides a comparative analysis of algorithms like AlphaZero and MuZero, including variants that incorporate stochastic planning techniques. A key innovation in this space is the integration of \textbf{Gumbel noise} into the Monte Carlo Tree Search (MCTS) process \cite{danihelka2022policy}. This approach replaces deterministic action selection with a probabilistic one, leading to more robust exploration and the discovery of novel strategies that might be missed by the standard upper confidence bound heuristic. By improving the planning process itself, these methods aim to achieve stronger performance with fewer simulations and reduced overall computation, making the powerful model-based RL paradigm more accessible and applicable to problems with vast state spaces.
+
+\subsection{Robustness in Stochastic and Partially Observable Environments}
+\label{subsec:stochastic}
+
+Finally, a major frontier is equipping these models to handle the inherent uncertainty and randomness of real-world environments. The successes of the Alpha series and MuZero have largely been confined to deterministic and fully observable settings, which are rare outside of perfect simulators and perfect information games.
+
+Future iterations must develop a robustness to stochastic transitions and rewards. This involves creating agents that can maintain performance even when the outcome of an action is not guaranteed or when the reward signal is noisy. Furthermore, models need to effectively address partial observability, where the agent does not have access to the full state of the environment. This requires moving beyond the Markov assumption and learning to maintain and update a belief state over time. Promising research directions include blending the planning strengths of MuZero with techniques from robust reinforcement learning \cite{oikarinen2023robust} and leveraging recurrent architectures to better infer the true state of a partially observed world. Achieving this would represent a final crucial step in transitioning these game-playing algorithms into robust decision-making engines for real-world applications.
