@@ -51,7 +51,7 @@ Conversely though, the value network that was derived from the RL policy
 performed better than the one derived from the SL policy.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth, keepaspectratio]{sections/4AlphaGo/innovation.png}
+    \includegraphics[height=1.0\linewidth, keepaspectratio]{sections/4AlphaGo/innovation.png}
     \caption{Performance of AlphaGo, on a single machine, for different
 combinations of components.}
 \end{figure}
@@ -119,14 +119,6 @@ between its predictions \( v_\theta(s) \) and the actual game outcomes \( z \):
 \begin{equation}
     L(\theta) = \mathbb{E}_{(s, z) \sim D} \left[ (v_\theta(s) - z)^2 \right]
 \end{equation}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{sections/4AlphaGo/mse.png}
-    \caption{Comparison of evaluation
-accuracy between the value network and rollouts with different policies.}
-\end{figure}
-
 \subsection{Challenges and Solutions}
 AlphaGo overcame several challenges:
 \begin{itemize}
