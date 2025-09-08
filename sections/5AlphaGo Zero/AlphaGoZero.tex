@@ -1,4 +1,4 @@
-\subsection{Introduction}
+\subsubsection{Introduction}
 AlphaGo Zero represents a groundbreaking advancement in artificial intelligence
 and reinforcement learning. Unlike its predecessor, AlphaGo, which relied on
 human gameplay data for training, AlphaGo Zero learns entirely from self-play,
@@ -6,7 +6,7 @@ employing deep neural networks and Monte Carlo Tree Search (MCTS). \cite{agz1}
 \\\\ By starting with only the rules of the game and leveraging reinforcement
 learning, AlphaGo Zero achieved superhuman performance in Go, defeating the
 previous version of AlphaGo in a 100-0 match.
-\subsection{Key Innovations}
+\subsubsection{Key Innovations}
 
 AlphaGo Zero introduced several groundbreaking advancements over its
 predecessor, AlphaGo, streamlining and enhancing its architecture and training
@@ -43,9 +43,9 @@ process:
           human data.
 \end{enumerate}
 
-\subsection{Training Process}
+\subsubsection{Training Process}
 
-\subsubsection{Monte Carlo Tree Search (MCTS) as policy evaluation operator}
+\subsubsubsection{Monte Carlo Tree Search (MCTS) as policy evaluation operator}
 Intially the neural network \( f_\theta \) is not very accurate in predicting
 the best move, as it is intiallised with random weights at first. To overcome
 this, AlphaGo Zero uses MCTS to explore the game tree and improve the policy.
@@ -63,13 +63,13 @@ where \[U(s, a) \propto \frac{p(s, a)}{1 + N(s, a)}\] MCTS at the end of the sea
 to update the neural network \( f_\theta \) by minimizing the cross-entropy
 loss between the predicted policy by $f_\theta$ and the MCTS policy.
 
-\subsubsection{Policy Iteration and self play}
+\subsubsubsection{Policy Iteration and self play}
 The agent uses the MCTS to select the best move at each state and the game is
 played till the end in a process called self play. The agent then uses the
 outcome of the game, $z$ game winner and $\pi$ to update the neural network.
 This process is repeated for a large number of iterations.
 
-\subsubsection{Network Training Process}
+\subsubsubsection{Network Training Process}
 
 The neural network is updated after each self-play game by using the data
 collected during the game. This process involves several key steps:
@@ -102,7 +102,7 @@ collected during the game. This process involves several key steps:
 
 \end{enumerate}
 
-\subsection{Challenges and Solutions}
+\subsubsection{Challenges and Solutions}
 Alpha Go Zero overcame several challanges:
 \begin{enumerate}
     \item Human knowledge Dependency: AlphaGo Zero eliminated the need for human gameplay
@@ -119,7 +119,7 @@ Alpha Go Zero overcame several challanges:
               board states} as input, learning representations directly from the data.
 \end{enumerate}
 
-\subsection{Performance Benchmarks}
+\subsubsection{Performance Benchmarks}
 
 Evaluating the performance of DeepMind’s reinforcement learning (RL) agents for strategy games such as Go has primarily been conducted using Elo ratings and direct head-to-head matches against previous versions. \\
 

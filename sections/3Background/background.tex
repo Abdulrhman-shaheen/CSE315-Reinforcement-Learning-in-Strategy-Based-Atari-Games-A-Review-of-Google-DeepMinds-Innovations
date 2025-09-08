@@ -4,6 +4,62 @@
 \titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}{2em}{0.5ex plus 0.2ex minus .2ex}{0em}
 
+There are a lot of related work that reviewed the
+reinforcement learning in strategy-based and Atari games. 
+Arulkumaran et al. \cite{I9} serves as a foundational reference that outlines 
+the evolution and state-of-the-art developments in DRL up to its 
+publication. It also offers insights into how combining deep learning 
+with reinforcement learning has led to significant advancements in 
+areas such as game playing, robotics, and autonomous decision-making 
+systems. Zhao et al. \cite{I10} surveys how DRL combines 
+capabilities of deep learning with the decision-making processes of 
+reinforcement learning, enabling systems to make control decisions 
+directly from input images. It also analyzes the development of 
+AlphaGo, and examines the algorithms and techniques that contributed 
+to AlphaGo’s success, providing insights into the integration of DRL 
+in complex decision-making tasks. Tang et al. \cite{I11} surveys how 
+AlphaGo marked a significant milestone by defeating human champions in 
+the game of Go, and its architecture and training process; then delves 
+into AlphaGo Zero. Shao et al. \cite{I12} categorize DRL methods into 
+three primary approaches: value-based, policy gradient, and model-based 
+algorithms, offering a comparative analysis of their techniques and 
+properties.\\
+
+Earlier surveys such as Kaelbling et al. \cite{kaelbling1996} and 
+Sutton \& Barto \cite{suttonbarto2018} established the theoretical 
+foundations of reinforcement learning, while subsequent works extended 
+these frameworks to deep learning contexts \cite{dayan1992}\cite{williams1992}. 
+The Arcade Learning Environment (ALE) benchmark standardized Atari game 
+evaluation for RL research \cite{bellemare2013}, which was later expanded 
+with the Deep Q-Network (DQN) \cite{mnih2015}, asynchronous actor-critic 
+methods (A3C) \cite{I8}\cite{konda2000}, and multi-step improvements such as 
+Rainbow DQN \cite{hessel2018}. These contributions highlighted the 
+importance of balancing stability, sample efficiency, and exploration. \\
+
+More recent algorithmic innovations include deterministic policy gradient 
+methods for continuous control (DDPG) \cite{lillicrap2015}, trust region 
+optimization techniques (TRPO) \cite{schulman2015}, and proximal policy 
+optimization (PPO) \cite{schulman2017}, which have become standard tools 
+for modern DRL. Distributed approaches such as IMPALA \cite{espeholt2018} 
+demonstrated scalability in large environments, while multi-agent settings 
+were explored by Lowe et al. \cite{lowe2017} and Zhang et al. \cite{AD2}. \\
+
+In terms of applications, DeepMind extended DRL beyond Atari and Go. 
+AlphaStar achieved grandmaster level in StarCraft II \cite{vinyals2019}, 
+while Jaderberg et al. \cite{jaderberg2019} explored cooperative multi-agent 
+environments in Capture the Flag. These large-scale experiments highlight 
+the versatility of DRL in handling both perfect-information board games and 
+complex imperfect-information environments. \\
+
+Several works also emphasized the open challenges in DRL. Exploration–
+exploitation balance and intrinsic motivation were studied in 
+\cite{bellemare2016}\cite{pathak2017}. Sample efficiency and generalization 
+remain critical hurdles \cite{zhang2018generalization}\cite{kirk2023}. Multi-agent 
+coordination \cite{zhang2019multi}, sparse reward settings \cite{ecoffet2021}, 
+and transfer learning \cite{taylor2009} continue to be active areas of research. 
+Comprehensive surveys such as Li \cite{li2018survey} and Francois-Lavet et al. 
+\cite{francois2018} summarize these advancements and challenges. \\
+
 Reinforcement Learning (RL) is a key area of machine learning that focuses on
 learning through interaction with the environment  \cite{bg2}. In RL, an agent takes
 actions (A) in specific states (S) with the goal of maximizing the rewards (R)

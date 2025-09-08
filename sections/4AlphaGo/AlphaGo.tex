@@ -1,4 +1,4 @@
-\subsection{Introduction}
+\subsubsection{Introduction}
 AlphaGo is a groundbreaking AI model that utilizes neural networks and tree
 search to play the game of Go, which is thought to be one of the most
 challenging classic games for artificial intelligence owing to its enormous
@@ -8,9 +8,9 @@ policy networks for taking actions, that combined with Monte Carlo simulation
 achieved a 99.8\% winning rate, and beating the European human Go champion in 5
 out 5 games.
 
-\subsection{Key Innovations}
+\subsubsection{Key Innovations}
 
-\subsubsection*{Integration of Policy and Value Networks with MCTS}
+\subsubsubsection*{Integration of Policy and Value Networks with MCTS}
 AlphaGo combines policy and value networks in an MCTS framework to efficiently explore and evaluate the game tree. Each edge \( (s, a) \) in the search tree stores:
 \begin{itemize}
     \item Action value \( Q(s, a) \): The average reward for taking action \( a \) from
@@ -56,9 +56,9 @@ performed better than the one derived from the SL policy.
 combinations of components.}
 \end{figure}
 
-\subsection{Training Process}
+\subsubsection{Training Process}
 
-\subsubsection{Supervised Learning for Policy Networks}
+\subsubsubsection{Supervised Learning for Policy Networks}
 The policy network was initially trained using supervised learning on human
 expert games. The training data consisted of 30 million board positions sampled
 from professional games on the KGS Go Server. The goal was to maximize the
@@ -74,7 +74,7 @@ This supervised learning approach achieved a move prediction accuracy of 57.0\%
 on the test set, significantly outperforming prior methods. This stage provided
 a solid foundation for replicating human expertise.
 
-\subsubsection{Reinforcement Learning for Policy Networks}
+\subsubsubsection{Reinforcement Learning for Policy Networks}
 The supervised learning network was further refined through reinforcement
 learning (RL). The weights of the RL policy network were initialized from the
 SL network. AlphaGo then engaged in self-play, where the RL policy network
@@ -104,7 +104,7 @@ human knowledge. The RL policy network outperformed the SL network with an 80\%
 win rate and achieved an 85\% win rate against Pachi, a strong open-source Go
 program, without using MCTS.
 
-\subsubsection{Value Network Training}
+\subsubsubsection{Value Network Training}
 The value network was designed to evaluate board positions by predicting the
 likelihood of winning from a given state. Unlike the policy network, it outputs
 a single scalar value \( v_\theta(s) \) between \(-1\) (loss) and \(+1\) (win).
@@ -119,7 +119,7 @@ between its predictions \( v_\theta(s) \) and the actual game outcomes \( z \):
 \begin{equation}
     L(\theta) = \mathbb{E}_{(s, z) \sim D} \left[ (v_\theta(s) - z)^2 \right]
 \end{equation}
-\subsection{Challenges and Solutions}
+\subsubsection{Challenges and Solutions}
 AlphaGo overcame several challenges:
 \begin{itemize}
     \item Overfitting: Training the value network on full games led to memorization. This
@@ -131,7 +131,7 @@ AlphaGo overcame several challenges:
           exploration bonus \( u(s, a) \) and the policy network priors.
 \end{itemize}
 
-\subsection{Performance Benchmarks}
+\subsubsection{Performance Benchmarks}
 AlphaGo achieved the following milestones:
 \begin{itemize}
     \item 85\% win rate against Pachi without using MCTS.

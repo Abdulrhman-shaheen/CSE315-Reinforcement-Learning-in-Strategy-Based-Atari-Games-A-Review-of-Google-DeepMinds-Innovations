@@ -1,5 +1,5 @@
 % Introduction
-\subsection{Introduction}
+\subsubsection{Introduction}
 Through the development of AlphaZero, a general model for board games with
 superhuman ability has been achieved in three games: Go, chess, and Shogi. It
 could achieve these results without the need for human gameplay data or
@@ -15,7 +15,7 @@ no prior knowledge of them or specific optimization and managed to show
 state-of-the-art results in almost all of them.
 
 % MuZero Algorithm
-\subsection{MuZero Algorithm}
+\subsubsection{MuZero Algorithm}
 \begin{figure*}[t]
     \centering
     \includegraphics[width=0.8\textwidth]{sections/7MuZero/graph_1.png}
@@ -36,7 +36,7 @@ need for a simulator, as the model internalizes the environment characteristics 
 planning and acting, which generally converges to reality through training. The value function at
 the final step is compared against the game result in board games, i.e., win, loss, or a draw.
 
-\subsection{Loss function and learning equations}
+\subsubsection{Loss function and learning equations}
 
 \begin{align}
     s_0      & = h_\theta(o_1, \ldots, o_t) \\
@@ -90,7 +90,7 @@ the final step is compared against the game result in board games, i.e., win, lo
 \end{align}
 
 % MCTS
-\subsection{MCTS}
+\subsubsection{MCTS}
 MuZero uses the same approach developed in AlphaZero to find the optimum action
 given an internal state. MCTS is used where states are the nodes, and the edges
 store visit count, mean value, policy, and reward. The search is done in a
@@ -108,12 +108,12 @@ the model up to this training step, ensuring no environment-specific data is
 needed.\cite{mz1}
 
 % Results
-\subsection{Results}
+\subsubsection{Results}
 The MuZero model demonstrated significant improvements across various test
 cases, achieving state-of-the-art performance in several scenarios. Key
 findings include:
 
-\subsubsection{Board Games}
+\subsubsubsection{Board Games}
 \begin{itemize}
     \item When tested on the three board games AlphaZero was trained for (Go, chess, and
           shogi):
@@ -125,7 +125,7 @@ findings include:
           \end{itemize}
 \end{itemize}
 
-\subsubsection{Atari Games}
+\subsubsubsection{Atari Games}
 \begin{itemize}
     \item MuZero was tested on 60 Atari games, competing against both human players and
           state-of-the-art models (model-based and model-free). Results showed:
@@ -137,7 +137,7 @@ findings include:
           effectiveness in complex, unstructured environments.
 \end{itemize}
 
-\subsubsection{Limitations}
+\subsubsubsection{Limitations}
 \begin{itemize}
     \item Despite its strengths, MuZero struggled in certain games, such as:
           \begin{itemize}

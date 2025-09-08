@@ -34,22 +34,22 @@
 \section{Introduction}
 
 \input{sections/2Introduction/introdcution.tex}
-\section{Related Work}
-\input{sections/1.5Related work/relatedwork.tex}
 
 \section{Background}
 \input{sections/3Background/background.tex}
 
-\section{AlphaGo}
+\section{Classification of Methods}
+In this section, we will be discussing the four models of Google DeepMind:
+\subsection{AlphaGo}
 \input{sections/4AlphaGo/AlphaGo.tex}
 
-\section{AlphaGo Zero}
+\subsection{AlphaGo Zero}
 \input{sections/5AlphaGo Zero/AlphaGoZero.tex}
 
-\section{Alpha Zero}
+\subsection{Alpha Zero}
 \input{sections/6AlphaZero/AlphaZero.tex}
 
-\section{MuZero}
+\subsection{MuZero}
 \input{sections/7MuZero/MuZero.tex}
 
 \section{Real-World Applications}
@@ -63,20 +63,63 @@
 
 
 \begin{thebibliography}{00}
-    %-------Introduction-------
-    \bibitem{I1}  N. Y. Georgios and T. Julian, Artificial Intelligence and Games. New York: Springer, 2018.
-    \bibitem{I2}  N. Justesen, P. Bontrager, J. Togelius, S. Risi, (2019). Deep learning for video game playing. arXiv.
+
+% --- Introduction ---
+    \bibitem{skinner1938} B. F. Skinner, \textit{The Behavior of Organisms: An Experimental Analysis}. Appleton-Century, 1938.
+    \bibitem{georgios2018} N. Y. Georgios and T. Julian, Artificial Intelligence and Games. New York: Springer, 2018.
+    \bibitem{samuel1959} A. L. Samuel, “Some studies in machine learning using the game of checkers,” \textit{IBM J. Res. Dev.}, vol. 3, no. 3, pp. 210–229, 1959.
+    \bibitem{minsky1961} M. Minsky, “Steps Toward Artificial Intelligence,” \textit{Proc. IRE}, vol. 49, no. 1, pp. 8–30, 1961.
+    \bibitem{kaelbling1996} L. P. Kaelbling, M. L. Littman, and A. W. Moore,“Reinforcement learning: A survey,” \textit{Journal of Artificial Intelligence Research}, vol. 4, pp. 237–285, 1996.
+    \bibitem{suttonbarto2018} R. S. Sutton and A. G. Barto,\textit{Reinforcement Learning: An Introduction}, 2nd ed., MIT Press, 2018.
+    \bibitem{bellemare2013} M. G. Bellemare, Y. Naddaf, J. Veness, and M. Bowling,“The Arcade Learning Environment: An evaluation platform for general agents,”\textit{Journal of Artificial Intelligence Research}, vol. 47, pp. 253–279, 2013.
+    \bibitem{mnih2015} V. Mnih et al.,“Human-level control through deep reinforcement learning,” \textit{Nature}, vol. 518, no. 7540, pp. 529–533, 2015.
+    \bibitem{puterman1994} M. L. Puterman, \textit{Markov Decision Processes: Discrete Stochastic Dynamic Programming}. Wiley, 1994.
+    \bibitem{howard1960} R. A. Howard, \textit{Dynamic Programming and Markov Processes}. Wiley, 1960.
+    \bibitem{bellman1957} R. E. Bellman, \textit{Dynamic Programming}. Princeton University Press, 1957.
+    \bibitem{barto1983} A. G. Barto, R. S. Sutton, and C. W. Anderson, “Neuronlike adaptive elements that can solve difficult learning control problems,” \textit{IEEE Trans. Syst., Man, Cybern.}, vol. 13, no. 5, pp. 834–846, 1983.
+    \bibitem{sutton1988} R. S. Sutton, “Learning to predict by the methods of temporal differences,” \textit{Machine Learning}, vol. 3, no. 1, pp. 9–44, 1988.
+    \bibitem{watkins1992} C.J.C.H.Watkins, P. Dayan, Q-learning. Mach Learn 8, 279–292 (1992).
+    \bibitem{dayan1992} P. Dayan, “The convergence of TD($\lambda$) for general $\lambda$,” \textit{Machine Learning}, vol. 8, no. 3–4, pp. 341–362, 1992.
+    \bibitem{lecun2015} Y. LeCun, Y. Bengio, and G. Hinton, “Deep learning,” \textit{Nature}, vol. 521, pp. 436–444, 2015.
+    \bibitem{goodfellow2016} I. Goodfellow, Y. Bengio, and A. Courville, \textit{Deep Learning}. MIT Press, 2016.
+    \bibitem{I2} N. Justesen, P. Bontrager, J. Togelius, S. Risi, (2019). Deep learning for video game playing. arXiv.
+    \bibitem{tsitsiklis1997} J. N. Tsitsiklis and B. Van Roy, “An analysis of temporal-difference learning with function approximation,” \textit{IEEE Trans. Autom. Control}, vol. 42, no. 5, pp. 674–690, 1997.
+    \bibitem{williams1992} R. J. Williams, “Simple statistical gradient-following algorithms for connectionist reinforcement learning,”
     \bibitem{I3}  V. Mnih, K. Kavukcuoglu, D. Silver, A. Graves, I. Antonoglou, D. Wierstra, M. Riedmiller, (2013). Playing Atari with deep reinforcement learning. arXiv.
     \bibitem{I4}  A. Graves, G. Wayne, I. Danihelka, (2014). Neural Turing Machines. arXiv.
-    \bibitem{I5}  C.J.C.H.Watkins, P. Dayan, Q-learning. Mach Learn 8, 279–292 (1992).
     \bibitem{I6}  DeepMind, (2015, February 12), Deep reinforcement learning.
+    \bibitem{watkins1989} C. J. C. H. Watkins, \textit{Learning from Delayed Rewards}, PhD thesis, Univ. of Cambridge, 1989.
     \bibitem{I7}  T. Schaul, J. Quan, I. Antonoglou, D. Silver, (2015). Prioritized Experience Replay. arXiv.
+    \bibitem{lin1992} L.-J. Lin, “Self-improving reactive agents based on reinforcement learning, planning and teaching,” \textit{Machine Learning}, vol. 8, no. 3–4, pp. 293–321, 1992.
     \bibitem{I8}  V. Mnih, A. P. Badia, M. Mirza, A. Graves, T. Lillicrap, T. Harley, D. Silver, K. Kavukcuoglu, (2016). Asynchronous Methods for Deep Reinforcement Learning. arXiv.
+    \bibitem{konda2000} V. R. Konda and J. N. Tsitsiklis, “Actor-Critic Algorithms,” in \textit{Advances in Neural Information Processing Systems}, vol. 12, 2000.
+    \bibitem{Silver2016} D. Silver et al., “Mastering the game of Go with deep neural networks and tree search,” \textit{Nature}, vol. 529, pp. 484–489, 2016.
+    \bibitem{I12} K. Shao, Z. Tang, Y. Zhu, N. Li, D. Zhao, (2019). A survey of deep reinforcement learning in video games. arXiv.
+
+    % --- Related Work order ---
     \bibitem{I9}  A. Kailash, P. D. Marc, B. Miles, and A. B. Anil, (2017). Deep Reinforcement Learning: A Brief Survey. IEEE Signal Processing Magazine, vol. 34, pp. 26–38, 2017. arXiv.
     \bibitem{I10} D. Zhao,  K. Shao, Y. Zhu, D. Li, Y. Chen, H. Wang, D. Liu, T. Zhou, and C. Wang, “Review of deep reinforcement learning and discussions on the development of computer Go,” Control Theory and Applications, vol. 33, no. 6, pp. 701–717, 2016 arXiv.
     \bibitem{I11} Z. Tang, K. Shao, D. Zhao, and Y. Zhu, “Recent progress of deep reinforcement learning: from AlphaGo to AlphaGo Zero,” Control Theory and Applications, vol. 34, no. 12, pp. 1529–1546, 2017.
-    \bibitem{I12} K. Shao, Z. Tang, Y. Zhu, N. Li, D. Zhao, (2019). A survey of deep reinforcement learning in video games. arXiv.
-    
+    \bibitem{hessel2018} M. Hessel et al., “Rainbow: Combining improvements in deep reinforcement learning,”in \textit{Proc. AAAI}, 2018, pp. 3215–3222.
+    \bibitem{lillicrap2015} T. P. Lillicrap et al.,“Continuous control with deep reinforcement learning,” arXiv:1509.02971, 2015.
+    \bibitem{schulman2015} J. Schulman, S. Levine, P. Abbeel, M. Jordan, and P. Moritz,“Trust region policy optimization,” in \textit{Proc. ICML}, 2015.
+    \bibitem{schulman2017} J. Schulman, F. Wolski, P. Dhariwal, A. Radford, and O. Klimov,“Proximal Policy Optimization Algorithms,” arXiv:1707.06347, 2017.
+    \bibitem{espeholt2018} L. Espeholt et al.,“IMPALA: Scalable distributed deep-RL with importance weighted actor-learner architectures,” in \textit{Proc. ICML}, 2018.
+    \bibitem{lowe2017} R. Lowe, Y. Wu, A. Tamar, J. Harb, P. Abbeel, and I. Mordatch, “Multi-agent actor-critic for mixed cooperative-competitive environments,”in \textit{Proc. NeurIPS}, 2017.
+    \bibitem{AD2} K. Zhang, Z. Yang, and T. Başar,“Multi-agent reinforcement learning: A selective overview of theories and algorithms,”\textit{Handbook of Reinforcement Learning and Control}, Springer, 2019.
+    \bibitem{vinyals2019} O. Vinyals et al.,“Grandmaster level in StarCraft II using multi-agent reinforcement learning,”\textit{Nature}, vol. 575, pp. 350–354, 2019.
+    \bibitem{jaderberg2019} M. Jaderberg et al.,“Human-level performance in 3D multiplayer games with population-based reinforcement learning,”\textit{Science}, vol. 364, no. 6443, pp. 859–865, 2019.
+    \bibitem{bellemare2016} M. Bellemare, S. Srinivasan, G. Ostrovski, T. Schaul, D. Saxton, and R. Munos,“Unifying count-based exploration and intrinsic motivation,”in \textit{Proc. NeurIPS}, 2016.
+    \bibitem{pathak2017} D. Pathak, P. Agrawal, A. Efros, and T. Darrell,“Curiosity-driven exploration by self-supervised prediction,”in \textit{Proc. CVPR}, 2017.
+    \bibitem{zhang2018generalization} C. Zhang, O. Vinyals, R. Munos, and S. Bengio,“A study on overfitting in deep reinforcement learning,” arXiv:1804.06893, 2018.
+    \bibitem{kirk2023} R. Kirk, C. Zhang, J. Parker-Holder, Y. Lu, A. Gleave,and J. Foerster, “Survey of generalisation in deep reinforcement learning,”\textit{Artificial Intelligence Review}, vol. 56, pp. 3003–3037, 2023.
+    \bibitem{zhang2019multi} K. Zhang, Z. Yang, and T. Başar,“Multi-agent reinforcement learning: A selective overview of theories and algorithms,”\textit{Handbook of Reinforcement Learning and Control}, Springer, 2019.
+    \bibitem{ecoffet2021} A. Ecoffet, J. Huizinga, J. Lehman, K. Stanley, and J. Clune,“First return, then explore,” \textit{Nature}, vol. 590, pp. 580–586, 2021.
+    \bibitem{taylor2009} M. E. Taylor and P. Stone,“Transfer learning for reinforcement learning domains: A survey,”\textit{Journal of Machine Learning Research}, vol. 10, pp. 1633–1685, 2009.
+    \bibitem{li2018survey} Y. Li, “Deep reinforcement learning: An overview,”\textit{arXiv:1701.07274}, updated 2018.
+    \bibitem{francois2018} V. Francois-Lavet, P. Henderson, R. Islam, M. G. Bellemare,J. Pineau, and D. Precup, “An introduction to deep reinforcement learning,”\textit{Foundations and Trends in Machine Learning}, vol. 11, no. 3–4,pp. 219–354, 2018.
+
+
     %-------Background-------
     \bibitem{bg1} L. Thorndike and D. Bruce, Animal Intelligence. Routledge, 2017.
     \bibitem{bg2} R. S. Sutton and A. Barto, Reinforcement learning : an introduction. Cambridge, Ma ; London: The Mit Press, 2018.

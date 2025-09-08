@@ -1,8 +1,8 @@
-\subsection{Introduction}
+\subsubsection{Introduction}
 
 AlphaZero is a generalized reinforcement learning framework that extends the methodology of AlphaGo Zero beyond the domain of Go. It employs the same core components—self-play reinforcement learning, deep neural networks with policy and value heads, and Monte Carlo Tree Search (MCTS)—but is designed to operate across Shogi, Chess, and Go. With only minimal adjustments to the input and output representations to account for game-specific rules, AlphaZero achieved superhuman performance in Go, Chess, and Shogi, thereby demonstrating the domain-independence and general applicability of the approach.
 
-\subsection{Key Innovations}
+\subsubsection{Key Innovations}
 AlphaZero introduced several advancements over AlphaGo Zero, 
 extending its applicability and improving efficiency:
 
@@ -38,9 +38,9 @@ extending its applicability and improving efficiency:
     multiple complex strategy games.
 \end{enumerate}
 
-\subsection{Performance Benchmarks}
+\subsubsection{Performance Benchmarks}
 
-\subsubsection{Chess}
+\subsubsubsection{Chess}
 AlphaZero was evaluated against Stockfish, the strongest chess engine at the time. After only 24 hours of training from random play, AlphaZero achieved a dominant performance. \\
 In a 100-game match under one-minute per move time controls, it recorded the following results: \\
 \begin{enumerate}
@@ -49,10 +49,10 @@ In a 100-game match under one-minute per move time controls, it recorded the fol
 \end{enumerate}
 These results demonstrated that AlphaZero could surpass a hand-crafted, search-intensive engine within a single day of training. \\
 
-\subsubsection{Shogi}
+\subsubsubsection{Shogi}
 In Shogi, AlphaZero was trained for 24 hours and then matched against Elmo, the world champion program. In a 100-game match under one-minute per move controls, AlphaZero achieved 90 wins, 8 draws, and only 2 losses, a result that established it as the strongest known Shogi player, human or machine, at the time. \\
 
-\subsubsection{Go}
+\subsubsubsection{Go}
 
 AlphaZero was compared directly with AlphaGo Zero, its predecessor and the strongest Go-playing system prior to this work. Despite the short training duration of 24 hours, AlphaZero won 60 games to 40 in a 100-game match. This result demonstrated that AlphaZero not only generalized across domains but also improved upon the performance of domain-specialized systems.
 

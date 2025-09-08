@@ -1,62 +1,67 @@
-%Introcution section%
 Artificial Intelligence (AI) has revolutionized the gaming industry, both as a
 tool for creating intelligent in-game opponents and as a testing environment
 for advancing AI research. Games serve as an ideal environment for training and
 evaluating AI systems because they provide well-defined rules, measurable
-objectives, and diverse challenges. From simple puzzles to complex strategy
-games, AI research in gaming has pushed the boundaries of machine learning and
-reinforcement learning. Also The benfits from such employment helped game
-developers to realize the power of AI methods to analyze large volumes of
-player data and optimize game designs. \cite{I1} \\ Atari games, in particular,
-with their retro visuals and straightforward mechanics, offer a challenging yet
-accessible benchmark for testing AI algorithms. The simplicity of Atari games
-hides complexity that they require strategies that involve planning,
-adaptability, and fast decision-making, making them also a good testing
-environment for evaluating AI's ability to learn and generalize. The
-development of AI in games has been a long journey, starting with rule-based
-systems and evolving into more sophisticated machine learning models. However,
-the machine learning models had a few challenges, from these challenges is that
-the games employing AI involves decision making in the game evironment. Machine
-learning models are unable to interact with the decisions that the user make
-because it depends on learning from datasets and have no interaction with the
-environment. To overcome such problem, game developers started to employ
-reinforcement learning (RL) in developing games. Years later, deep learning
-(DL) was developed and shows remarkable results in video games\cite{I2}. The
-combination between both reinforcement learning and deep learning resulted in
-Deep Reinforcement Learning (DRL). The first employment of DRL was by game
-developers in atari game\cite{I3}. One of the famous companies that employed
-DRL in developing AI models is Google DeepMind. This company is known for
-developing AI models, including games. Google DeepMind passed through a long
-journey in developing AI models for games. Prior to the first DRL game model
-they develop, which is AlphaGo, Google DeepMind gave a lot of contributions in
-developing DRL, by which these contributions were first employed in Atari
-games.\\ For the employment of DRL in games to be efficient, solving tasks in
-games need to be sequential, so Google DeepMind combined RL-like techniques
-with neural networks to create models capable of learning algorithms and
-solving tasks that require memory and reasoning, which is the Neural Turing
-Machines (NTMs)\cite{I4}. They then introduced the Deep Q-network (DQN)
-algorithm, which is combine deep learning with Q-learning and RL algorithm.
-Q-learning is a model in reinforcement learning which use the Q-network, which
-is is a type of neural network to approximate the Q-function, which predicts
-the value of taking a particular action in a given state\cite{I5}. The DQN
-algorithm was the first algorithm that was able to learn directly from
-high-dimensional sensory input, the data that have a large number of features
-or dimensions\cite{I6}.\\ To enhance the speed of learning in reinforcement
-learning agents, Google DeepMind introduced the concept of experience replay,
-which is a technique that randomly samples previous experiences from the
-agent's memory to break the correlation between experiences and stabilize the
-learning process\cite{I7}. They then developed asynchronus methods for DRL,
-which is the Actor-Critic (A3C) model. This model showed faster and more stable
-training and showed a remarkable performance in Atari games\cite{I8}. By the
-usage of these algorithms, Google DeepMind was able to develop the first AI
-model that was able to beat the world champion in the game of Go, which is
-AlphaGo in 2016.\\
-The paper is organized as follows: Section II presents the related work that
-surveys the development of DRL in games and the contribution that we 
-added to the previous surveys. Section III presents the background 
-information about the development of DRL in games. Section IV presents the
-first AI model that Google DeepMind developed, which is AlphaGo. Section V
-presents AlphaGo Zero. Section VI presents MuZero. Section VII presents the
-advancements that were made in developing AI models for games. Section VIII 
-presents the future directions that AI models for games will take, and their
-applications in real life.
+objectives, and diverse challenges \cite{skinner1938}\cite{georgios2018}. 
+From simple puzzles to complex strategy games, AI research in gaming has pushed 
+the boundaries of machine learning and reinforcement learning 
+\cite{samuel1959}\cite{minsky1961}\cite{kaelbling1996}\cite{suttonbarto2018}. 
+Also, the benefits from such employment helped game developers to realize 
+the power of AI methods to analyze large volumes of player data and optimize 
+game designs \cite{georgios2018}. \\
+
+Atari games, in particular, with their retro visuals and straightforward
+mechanics, offer a challenging yet accessible benchmark for testing AI
+algorithms. The simplicity of Atari games hides complexity: they require 
+strategies that involve planning, adaptability, and fast decision-making,
+making them a good testing environment for evaluating AI’s ability to learn 
+and generalize \cite{bellemare2013}\cite{mnih2015}. The development of AI in games 
+has been a long journey, starting with rule-based systems and evolving into 
+more sophisticated machine learning models \cite{samuel1959}\cite{minsky1961}. 
+However, early machine learning models faced challenges in decision-making 
+within interactive game environments \cite{puterman1994}\cite{howard1960}. 
+Traditional supervised and unsupervised models depended on static datasets 
+without the ability to interact dynamically with the environment. 
+To overcome this problem, game developers and researchers began to employ 
+reinforcement learning (RL) \cite{bellman1957}\cite{barto1983}\cite{sutton1988}\cite{watkins1992}\cite{dayan1992}. 
+Years later, deep learning (DL) showed remarkable success in computer vision 
+and video games \cite{lecun2015}\cite{goodfellow2016}\cite{I2}. The combination of RL and DL 
+resulted in Deep Reinforcement Learning (DRL), enabling agents to learn directly 
+from high-dimensional sensory data \cite{tsitsiklis1997}\cite{williams1992}. 
+The first notable use of DRL was in Atari games \cite{I3}\cite{mnih2015}. \\
+
+One of the leading companies in applying DRL to games is Google DeepMind. 
+This company is widely recognized for developing advanced AI models, including 
+those for games. Prior to AlphaGo, DeepMind had already contributed 
+substantially to DRL through Atari benchmarks and novel algorithmic 
+developments \cite{mnih2015}\cite{bellemare2013}. For sequential decision-making, 
+DeepMind combined RL techniques with neural networks to create models capable 
+of memory and reasoning, such as Neural Turing Machines (NTMs) \cite{I4}. 
+They then introduced the Deep Q-Network (DQN) algorithm, which combined 
+Q-learning \cite{watkins1992}\cite{watkins1989} with deep neural networks, allowing agents to 
+approximate the Q-function from high-dimensional inputs \cite{I6}. 
+The DQN represented a major breakthrough in deep RL, as it was the first 
+algorithm to learn directly from raw pixels and achieve human-level performance 
+on Atari games \cite{mnih2015}. \\
+
+To further enhance learning efficiency, DeepMind introduced experience replay 
+\cite{I7}\cite{lin1992}, which stabilized training by breaking correlations in sequential data. 
+They then developed asynchronous methods such as A3C, which improved stability 
+and scalability in DRL \cite{I8}\cite{konda2000}\cite{tsitsiklis1997}. These developments 
+enabled DeepMind to build AlphaGo, the first AI model to defeat the world 
+champion in the game of Go, a historic milestone in both AI and reinforcement 
+learning \cite{Silver2016}. \\ 
+
+Our paper is similar to Shao et al. \cite{I12}, as we discussed the 
+developments that Google DeepMind made in developing AI models for 
+games and the advancements that they made over the last years to develop 
+the models and the future directions of implementing DRL in games; 
+how this implementation helps in developing real life applications. The
+main contribution in our paper is the comprehensive details of the four 
+models AlphaGo, AlphaGo Zero, AlphaZero, and MuZero, focusing on the key innovations for 
+each model, how the training process was done, challenges that each model
+faced and the improvements that were made, and the performance benchmarks. 
+Studying each one of these models in detail helps in understanding how 
+RL was developed in games reaching the current state, by which it is 
+now used in real life applications. Also we discussed the advancements 
+in these four AI models, reaching to the future directions.
